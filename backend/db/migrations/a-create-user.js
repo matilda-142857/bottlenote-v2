@@ -25,6 +25,9 @@ module.exports = {
       icon: {
         type: Sequelize.STRING
       },
+      scratchPad: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

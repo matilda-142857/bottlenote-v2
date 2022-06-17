@@ -30,8 +30,13 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       }
     },
-    icon: DataTypes.STRING,
+    icon: {
+      type: DataTypes.STRING,
+    },
     // defaultValue: "/images/logo.svg",
+    scratchPad: {
+      type: DataTypes.STRING,
+    }
   },  {
     defaultScope: {
       attributes: {
@@ -49,12 +54,15 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Notebook, 
+      { foreignKey: "userId" });
+    User.hasMany(models.Tag, 
+      { foreignKey: "userId" });
   };
 
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
-    const { id, username, email } = this; // context will be the User instance
-    return { id, username, email };
+    const { id, username, email, icon, scratchPad } = this; // context will be the User instance
+    return { id, username, email, icon, scratchPad };
   };
 
   User.prototype.validatePassword = function (password) {
