@@ -12,10 +12,10 @@ function NewNotebookForm() {
 	const [errors, setErrors] = useState([]);
     const history = useHistory();
 
-	// const cancel = (e) => {
-	// 	e.stopPropagation();
-	// 	setTitle("");
-	// };
+	const cancel = (e) => {
+		e.stopPropagation();
+		setTitle("");
+	};
 
     const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -56,9 +56,9 @@ function NewNotebookForm() {
             required
         />
         <div className="new-nb-buttons">
-            {/* <button className="btn nb-cancel" onClick={cancel}>
+            <button className="btn nb-cancel" onClick={cancel}>
                 Cancel
-            </button> */}
+            </button>
             <button
                 className="btn nb-create"
                 type="submit"

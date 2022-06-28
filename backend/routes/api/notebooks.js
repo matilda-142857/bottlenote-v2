@@ -3,13 +3,13 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { User, Notebook, Note } = require("../../db/models");
+const { Notebook, Note } = require("../../db/models");
 
 const router = express.Router();
 
 const validateNotebook = [
-	check("name")
-		// .exists({ checkFalsy: true })
+	check("title")
+		.exists({ checkFalsy: true })
 		.isLength({ min: 1, max: 50 })
 		.withMessage("Notebook name must be unique and between 1 and 50 characters"),
 	handleValidationErrors,
@@ -46,14 +46,10 @@ router.patch(
 	validateNotebook,
 	asyncHandler(async (req, res) => {
 		const notebookId = parseInt(req.params.notebookId, 10);
-		const { name } = req.body;
-
-		const notebookToUpdate = await Notebook.findByPk(notebookId);
-
-		notebookToUpdate.name = name;
-
-		const notebook = await notebookToUpdate.save();
-
+		const newTitle = await Notebook.findByPk(notebookId);
+        const { title } = req.body;
+		newTitle.title = title;
+		const notebook = await newTitle.save();
 		res.json(notebook);
 	})
 );
@@ -61,7 +57,7 @@ router.patch(
 router.delete(
 	"/:notebookId",
 	requireAuth,
-	asyncHandler(async (req, res, next) => {
+	asyncHandler(async (req, res) => {
 		const notebookId = parseInt(req.params.notebookId, 10);
         const notebook = await Notebook.findByPk(notebookId);
         const notes = await Note.findAll({ where: { notebookId } });
