@@ -46,7 +46,7 @@ function HomePage(){
         <Navigation/>   
         {/* <NoteBox/> */}
         <ScratchPad/>
-        <NewNotebookForm />
+        {/* <NewNotebookForm /> */}
       </div>
     </main>
   );

@@ -58,7 +58,7 @@ export const editNotebook = (notebook) => async (dispatch) => {
 	return data;
 };
 
-export const deleteOneNotebook = (notebook) => async (dispatch) => {
+export const deleteANotebook = (notebook) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notebooks/${notebook.id}`, {
 		method: "DELETE",
 	});

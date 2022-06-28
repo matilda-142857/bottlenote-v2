@@ -27,6 +27,7 @@ const trashedNote = (note) => {
 
 export const getAllNotes = () => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes`);
+    console.log(response)
 	const data = await response.json();
 	dispatch(getNotes(data));
 	return response;
@@ -63,12 +64,12 @@ export const trashNote = (noteId, note) => async (dispatch) => {
 	return response;
 };
 
-const initialState = { notes: null };
+const initialState = {};
 
 const notesReducer = (state = initialState, action) => {
 
 	let newState;
-    
+
 	switch (action.type) {
 
 		case GET_ALL_NOTES:

@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 // import Navigation from "./components/Navigation";
 import SplashPage from "./components/Splash/Splash";
 import HomePage from "./components/Home/HomePage";
+import NotesPage from "./components/NotePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route path="/home">
           <HomePage />
+        </Route>
+        <Route path="/notes">
+          <NotesPage />
         </Route>
       </Switch>
     </>
