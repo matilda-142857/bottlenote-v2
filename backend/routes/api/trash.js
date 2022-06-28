@@ -58,7 +58,7 @@ router.delete(
 				},
 				Tag,
 			],
-			where: { trash: true },
+			where: { isTrashed: true },
 		});
 
 		for (let i = 0; i < trash.length; i++) {

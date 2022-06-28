@@ -54,8 +54,8 @@ router.post(
 	requireAuth,
 	validateNotes,
 	asyncHandler(async (req, res) => {
-		const { title, content, notebookId, trash, tagsArr } = req.body;
-		const newNote = await Note.create({ title, content, notebookId, trash });
+		const { title, content, notebookId, isTrashed, tagsArr } = req.body;
+		const newNote = await Note.create({ title, content, notebookId, isTrashed});
 		const noteId = newNote.id;
 
 		for (let i = 0; i < tagsArr.length; i++) {
