@@ -3,15 +3,16 @@
 body{
   font-family: 'Joan', serif;
   height: 1500px;
-  /* background: #e8ebf0; */
+  background: #ffffff !important;
+  /* #e8ebf0 */
   /*ꕀ ꕀ ꕀ ꕀ*/
 }
-.container {
+.splash-container {
     width: 80%;
     margin: 0 auto;
 }
 
-.header {
+.splash-header {
     font-size: 24px;
     width: 100%;
     height: 100px;
@@ -21,6 +22,11 @@ body{
     line-height: 50px;
     top: 0;
     left: 0;
+    transition: all 0.15s linear;
+}
+
+.splash-header.active {
+     box-shadow: 0 0 15px rgba(0,0,0,0.4);   
 }
 
 #splashLogo{
@@ -30,7 +36,7 @@ body{
     float: left;
 }
 
-.header h1 {
+.splash-header h1 {
     font-weight: 300;
     font-size: 40px;
     letter-spacing: 1px;
@@ -39,26 +45,26 @@ body{
     padding-left: 25px;
     color: #014b56;
 }
-.header nav {
+.splash-header nav {
     float: right;
     padding-right: 35px;
     line-height: 50px;
 }
-.header nav ul li {
+.splash-header nav ul li {
     list-style: none;
     display: inline-block;
     margin-left: 20px;
 }
-.header nav ul li a {
+.splash-header nav ul li a {
     text-decoration: none;
     font-size: 18px;
     color: #014b56;
 }
-.header nav ul li a:hover {
+.splash-header nav ul li a:hover {
     color: #057785;
     transition: 200ms;
 }
-.header.shadow {
+.splash-header.shadow {
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 

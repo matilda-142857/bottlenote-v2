@@ -1,0 +1,71 @@
+html, body {
+    margin: 0%;
+    padding: 0%;
+}
+.homepage {
+    background-image: 
+      linear-gradient(
+        rgb(255, 255, 255), 
+        rgb(255, 255, 255, .5), 
+        rgba(255, 255, 255, 0)
+      ),
+      url("../../context/bkgtinted.jpg");
+    background-attachment: fixed;
+    background-position: 150%;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 200vh;
+    /* fix background fill !!!important */
+    /* position: fixed; */
+  }
+
+.scratch-pad-title{
+    margin-left: 64%;
+    margin-top: 11%;
+    position:absolute;
+    color: #d6b09b;
+}
+
+.greeting-text{
+    position: absolute;
+    left: 18%; 
+    top: 3%;
+    color: #057785;
+    font-weight: 100;
+    font-size: 28px;
+}
+
+.date-display{
+    position: absolute;
+    left: 88%; 
+    top: 4%;
+    color: #acc7ca;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.pad-textarea {
+	background-color: #f6d8cb;
+	border: none;
+    border-radius: 5px;
+	height: 400px;
+    width: 30%;
+	resize: none;
+    margin-left: 62%;
+    margin-top: 10%;
+    padding: 22px;
+    padding-top: 45px;
+    font-family: 'Joan', serif;
+    font-size: 16px;
+    letter-spacing: .2px;
+}
+
+.pad-textarea:focus {
+	outline-color: transparent;
+	outline-style: none;
+}
+
+.pad-textarea:focus::placeholder {
+	color: transparent;
+}
+

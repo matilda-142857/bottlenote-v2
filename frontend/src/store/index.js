@@ -2,6 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from './session';
 import usersReducer from './users';
+import notesReducer from "./notes";
+import notebookReducer from "./notebooks";
 
 const configureStore = (preloadedState) => {
     return createStore(rootReducer, preloadedState, enhancer);
@@ -9,7 +11,9 @@ const configureStore = (preloadedState) => {
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    users: usersReducer
+    users: usersReducer,
+    notes: notesReducer,
+    notebooks: notebookReducer
 });
 
 let enhancer;

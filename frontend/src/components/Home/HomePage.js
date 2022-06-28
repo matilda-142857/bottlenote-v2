@@ -3,27 +3,51 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
+import Navigation from '../Navigation/Navigation';
+import ScratchPad from './scratchPad';
+import "./Homepage.css";
+import NewNotebookForm from '../Navigation/newNotebook';
 
-function HomePage({ isLoaded }){
+function HomePage(){
+
   const sessionUser = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
-
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-  };
 
   if (!sessionUser) {
     return <Redirect to={'/'} />
   }
+
+  const greetingMessage = () => {
+		const time = new Date().getHours();
+		let greeting;
+		if (time < 12) {
+			greeting = "Good morning";
+		} else if (time < 18) {
+			greeting = "Good afternoon";
+		} else {
+			greeting = "Good evening";
+		}
+		return greeting;
+	};
+
+  const date = new Date();
+
+  const monthsList = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+
+  const monthName = monthsList[date.getMonth()];
+  const dateDisplay = `${monthName} ${date.getDate()}, ${date.getFullYear()}`;
+
   return (
-    <ul>
-        <h1>TESTING</h1>
-        <li>{sessionUser.username}</li>
-        <li>
-            <button onClick={logout}>Log Out</button>
-        </li>
-    </ul>
+    <main className="homepage">
+      <div className='homepage-content'>
+      <h1 className='greeting-text'>{greetingMessage()}, {sessionUser.username}</h1>
+      <h1 className='date-display'>{dateDisplay}</h1>
+      <div className='bkg-overlay'/>
+        <Navigation/>   
+        {/* <NoteBox/> */}
+        <ScratchPad/>
+      </div>
+    </main>
   );
 }
 

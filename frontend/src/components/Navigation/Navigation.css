@@ -1,0 +1,155 @@
+*{
+    text-decoration: none;
+    list-style: none;
+}
+
+.navigation{
+    display: flex;
+    position: absolute;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+  }
+
+  .navigation-top{
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-button{
+    display:inline-block;
+    padding: 2px;
+    margin: 2%;
+    margin-left: -4%;
+  }
+
+  .profile-icon{
+    font-size: 20px;
+    color: #acc7ca;
+    padding-bottom: 10px;
+    display:inline-block;
+    margin-top: -8px;
+    margin-bottom: 10px;
+  }
+  .navigation .navigation-side{
+    width: 17%;
+    height: 100%;
+    background: #003e4d;
+    padding: 30px 0px;
+    position: fixed;
+    margin-left: -1%;
+  }
+  
+  .navigation .navigation-side h2{
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .navigation .navigation-side ul li{
+    padding: 18px;
+    margin-left: -14%;
+    border-bottom: 1px solid #bdb8d7;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }    
+
+  .navitem{
+    color: #acc7ca;
+    display: block;
+    cursor: pointer;
+    list-style: none;
+    text-decoration: none;
+  }
+
+  .NavNotebookContainer{
+    margin: -5%;
+  }
+
+  .navNotebooks{
+    color: #acc7ca;
+    padding-top: 8px;
+    margin: 2px;
+  }
+
+  .navNotebooks:hover{
+    color: #fff;
+  }
+
+  .new-nb-container{
+    margin-left: 500px;
+    font-size: 50px;
+  }
+
+  .navTags{
+    color: #acc7ca;
+    padding-top: 10px;
+  }
+
+  .navTags:hover{
+    color: #fff;
+  }
+
+  .navitem .fas{
+    width: 25px;
+    padding-right: 0rem;
+    margin-left: 8px;
+  }
+  
+  .navigation .navigation-side ul li:hover{
+    background-color: #00313f;
+  }
+      
+  .navigation .navigation-side ul li:hover a{
+    color: #fff;
+  }
+   
+  .navigation .navigation-side .social_media{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+  
+  .navigation .navigation-side .social_media a{
+    display: block;
+    width: 40px;
+    background: #594f8d;
+    height: 40px;
+    line-height: 45px;
+    text-align: center;
+    margin: 0 5px;
+    color: #bdb8d7;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .navigation .main_content{
+    width: 100%;
+    margin-left: 200px;
+  }
+  
+  .navigation .main_content .header{
+    padding: 20px;
+    background: #fff;
+    color: #717171;
+    border-bottom: 1px solid #e0e4e8;
+  }
+  
+  .navigation .main_content .info{
+    margin: 20px;
+    color: #717171;
+    line-height: 25px;
+  }
+  
+  .navigation .main_content .info div{
+    margin-bottom: 20px;
+  }
+
+  
+  @media (max-height: 500px){
+    .social_media{
+      display: none !important;
+    }
+  }

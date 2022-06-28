@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const UPDATE_PAD = "scratchPad/UPDATE_PAD";
 
 const setUser = (user) => {
   return {
@@ -16,6 +17,13 @@ const removeUser = () => {
   };
 };
 
+const updatePad = (pad) => {
+	return {
+		type: UPDATE_PAD,
+		pad,
+	};
+};
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
@@ -28,6 +36,10 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
+      return newState;
+    case UPDATE_PAD:
+      newState = { ...state };
+      newState.user.scratchPad = action.pad;
       return newState;
     default:
       return state;
@@ -92,6 +104,18 @@ export const demoLogin = () => async (dispatch) =>
     });
     dispatch(removeUser());
     return response;
+  };
+
+  export const updateScratchPad = (pad) => async (dispatch) => {
+    const body = JSON.stringify(pad);
+    const response = await csrfFetch(`/api/scratchpad`, {
+      method: "PUT",
+      body,
+    });
+  
+    const data = await response.json();
+    dispatch(updatePad(data));
+    return data;
   };
 
 export default sessionReducer;

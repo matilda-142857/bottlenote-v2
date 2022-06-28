@@ -15,17 +15,14 @@ function App() {
 
   return (
     <>
-      {/* <Navigation isLoaded={isLoaded} />
-      {isLoaded && ( */}
-        <Switch>
-          <Route exact path="/">
-            <SplashPage />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-        </Switch>
-      {/* )} */}
+      <Switch>
+        <Route exact path="/">
+          <SplashPage />
+        </Route>
+        <Route path="/home">
+          <HomePage />
+        </Route>
+      </Switch>
     </>
   );
 }

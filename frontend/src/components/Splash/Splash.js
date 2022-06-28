@@ -5,19 +5,30 @@ import LoginFormModal from '../LoginFormPage';
 import SignupFormModal from '../SignupFormPage';
 import './Splash.css';
 import logo from "../../context/bottlenotelogo.png";
+import $ from 'jquery';
 // import * as sessionActions from '../../store/session';
 
-function Splash({ isLoaded }){
+function Splash(){
   const sessionUser = useSelector(state => state.session.user);
 
   if (sessionUser) {
     return <Redirect to={'/home'} />;
   }
 
+  $(window).scroll(function() {     
+    var scroll = $(window).scrollTop();
+    if (scroll > 0) {
+        $(".splash-header").addClass("active");
+    }
+    else {
+        $(".splash-header").removeClass("active");
+    }
+});
+
   return (
     <>
-    <header className="header">
-      <div class="container">
+    <header className="splash-header">
+      <div class="splash-container">
         <div class="logo">
           <img id="splashLogo" src={logo} />
           <h1>Bottlenote</h1>
