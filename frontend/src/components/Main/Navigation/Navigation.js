@@ -1,12 +1,13 @@
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getAllNotebooks } from "../../store/notebooks";
+import { getAllNotebooks } from "../../../store/notebooks";
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
-import NotebookDropdown from "./NotebookDropdown";
-import TagsDropdown from "./tagDropdown";
+import NotebookDropdown from "./DropdownNB";
+import TagsDropdown from "./DropdownTags";
 import ProfileButton from "./ProfileButton";
+import $ from "jquery";
 
 const Navigation = () => {
 
@@ -21,6 +22,10 @@ const Navigation = () => {
       dispatch(getAllNotebooks());
     }
   }, [dispatch, sessionUser])
+
+  $('.fa-chevron-circle-left').on('click', function () {
+    $(this).toggleClass('rotate')
+  })
 
   return (
     <main className="navigation">
@@ -37,9 +42,9 @@ const Navigation = () => {
 
               <li><NavLink to="/notes" className="navitem"><i class="fas fa-file"></i> Notes</NavLink></li>
 
-              <li className="navitem"
-                onClick={() => setShowNotebooks(!showNotebooks)}>
-                <i className="fas fa-solid fa-book"></i> Notebooks
+              <li><NavLink to="/notebooks" className="navitem notebooktab"><i class="fas fa-solid fa-book"></i> Notebooks</NavLink>
+                <i className="fas fa-chevron-circle-left"
+                onClick={() => setShowNotebooks(!showNotebooks)}></i> 
                 {showNotebooks && <NotebookDropdown/>}
               </li>
 

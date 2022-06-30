@@ -4,6 +4,7 @@ import sessionReducer from './session';
 import usersReducer from './users';
 import notesReducer from "./notes";
 import notebookReducer from "./notebooks";
+import trashReducer from "./trash";
 
 const configureStore = (preloadedState) => {
     return createStore(rootReducer, preloadedState, enhancer);
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     session: sessionReducer,
     users: usersReducer,
     notes: notesReducer,
-    notebooks: notebookReducer
+    notebooks: notebookReducer,
+    trash: trashReducer
 });
 
 let enhancer;

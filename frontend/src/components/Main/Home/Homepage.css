@@ -9,7 +9,7 @@ html, body {
         rgb(255, 255, 255, .5), 
         rgba(255, 255, 255, 0)
       ),
-      url("../../context/bkgtinted.jpg");
+      url("../../../context/bkgtinted.jpg");
     background-attachment: fixed;
     background-position: 150%;
     background-repeat: no-repeat;

@@ -48,7 +48,7 @@ router.patch(
 		const notebookId = parseInt(req.params.notebookId, 10);
 		const newTitle = await Notebook.findByPk(notebookId);
         const { title } = req.body;
-		newTitle.title = title;
+		    newTitle.title = title;
 		const notebook = await newTitle.save();
 		res.json(notebook);
 	})

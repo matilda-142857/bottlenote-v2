@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../../../store/session";
 
 const ScratchPad = () => {
 	const dispatch = useDispatch();
@@ -12,14 +12,6 @@ const ScratchPad = () => {
             { scratchPad: padContent }
         ));
 	}, [padContent]);
-
-    // useEffect(() => {
-    //     const interval = setTimeout(() => {
-	// 	dispatch(sessionActions.updateScratchPad(
-    //         { scratchPad: padContent }
-    //     ))}, 2000)
-    //     return clearInterval(interval);
-	// }, [padContent]);
 
 	return (
 		<div className="scratch-pad">

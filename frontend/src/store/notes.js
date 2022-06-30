@@ -7,21 +7,21 @@ const TRASH_NOTE = "notes/TRASH_NOTE";
 const getNotes = (notes) => {
 	return {
 		type: GET_ALL_NOTES,
-		notes,
+		notes
 	};
 };
 
 const addUpdateNote = (note) => {
 	return {
 		type: ADD_UPDATE_NOTE,
-		note,
+		note
 	};
 };
 
 const trashedNote = (note) => {
 	return {
 		type: TRASH_NOTE,
-		note,
+		note
 	};
 };
 
@@ -32,18 +32,32 @@ export const getAllNotes = () => async (dispatch) => {
 	return response;
 };
 
+// export const getAllNotebookNotes = (notebookId) => async (dispatch) => {
+// 	const response = await csrfFetch(`/api/notes/${notebookId}`);
+// 	const data = await response.json();
+// 	dispatch(getNotes(data));
+// 	return response;
+// };
+
 export const addNewNote = (newNote) => async (dispatch) => {
 	const response = await csrfFetch("/api/notes/new", {
+        headers: {
+            "Content-Type": "application/json",
+        },
 		method: "POST",
 		body: JSON.stringify(newNote),
 	});
 	const data = await response.json();
+    console.log("SCREEEEEEEEE", data)
 	dispatch(addUpdateNote(data));
 	return data.id;
 };
 
 export const editNote = (noteId, note) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes/${noteId}`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
 		method: "PATCH",
 		body: JSON.stringify(note),
 	});
@@ -55,6 +69,9 @@ export const editNote = (noteId, note) => async (dispatch) => {
 //CHANGES iSTRASHED VALUE. Delete is in trash.js
 export const trashNote = (noteId, note) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes/${noteId}`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
 		method: "PATCH",
 		body: JSON.stringify(note),
 	});
@@ -63,16 +80,17 @@ export const trashNote = (noteId, note) => async (dispatch) => {
 	return response;
 };
 
-const initialState = { notes: null };
+const initialState = {};
 
 const notesReducer = (state = initialState, action) => {
 
 	let newState;
-    
+
 	switch (action.type) {
 
 		case GET_ALL_NOTES:
-			newState = {};
+			newState = {...state};
+            console.log("wwwwwwwwwwwwwwwwwwwww" ,action.notes)
 			action.notes.forEach((note) => {
 			newState[note.id] = note; 
             });

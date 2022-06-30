@@ -1,6 +1,8 @@
 *{
     text-decoration: none;
     list-style: none;
+    font-family: 'Joan', serif;
+    transition: 0.2s;
 }
 
 .navigation{
@@ -8,6 +10,7 @@
     position: absolute;
     letter-spacing: 1px;
     box-sizing: border-box;
+
   }
 
   .navigation-top{
@@ -62,23 +65,114 @@
     text-decoration: none;
   }
 
+  .fa-chevron-circle-left{
+    width: 25px;
+    color: #acc7ca;
+    margin-left: 70%;
+    margin-top: -6.5%;
+    position: absolute;
+  }
+
+  .fa-chevron-circle-left:hover{
+    width: 25px;
+    color: #fff;
+    margin-left: 70%;
+    margin-top: -6.5%;
+    position: absolute;
+    transition: 200ms;
+  }
+  
+  .fa-chevron-circle-left::before {
+    transition: transform .2s ease;
+    transform: rotate(0);
+  }
+  
+  .rotate.fa-chevron-circle-left::after {
+    transition: transform .2s ease;
+    transform: rotate(90deg);
+  }
+
   .NavNotebookContainer{
-    margin: -5%;
+    margin: -10%;
   }
 
   .navNotebooks{
     color: #acc7ca;
     padding-top: 8px;
-    margin: 2px;
   }
 
   .navNotebooks:hover{
     color: #fff;
   }
 
+  .fa-book{
+    padding-right: 8px;
+  }
+
+  /* Button for new nb */
+  .fa-plus-circle{
+    color: #acc7ca;
+  }
+
+  .new-nb-button{
+    background-color: transparent;
+    font-family: 'Joan', serif;
+    border-radius: 2px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0.8;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    width: 60%;
+  }
+  
+  .new-nb-button:hover {opacity: 1}
+
+  /* Modal for new nb */
+
   .new-nb-container{
-    margin-left: 500px;
-    font-size: 50px;
+    margin: 30px;
+    width: 450px;
+    display: flexbox;
+    justify-content: center;
+  }
+
+  .new-nb-title{
+    font-size: 25px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .new-nb-errors{
+    font-size: 15px;
+    margin-left: 5%;
+  }
+
+  .nb-title-input{
+    margin-left: 14%;
+    width: 70%;
+    height: 30px;
+    font-size: 20px;
+    margin-bottom: 2%;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: #00313f solid .5px;
+  }
+
+  .nb-title-input:focus{
+    outline:none;
+    border-bottom: #00313f solid .8px;
+  }
+
+  .new-nb-buttons{
+    align-items: center;
+    margin-top: 3%;
+    margin-left: 70%;
   }
 
   .navTags{

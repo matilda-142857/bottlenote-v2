@@ -35,6 +35,20 @@ router.get(
 	})
 );
 
+//notes from a notebook
+router.get(
+	"/:notebookId",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+        const notebookId = parseInt(req.params.notebookId, 10);
+		const notes = await Note.findAll({
+			where: { isTrashed: false, notebookId },
+			order: [["updatedAt", "DESC"]],
+		});
+		res.json(notes);
+	})
+);
+
 //READ (one)
 router.get(
 	"/:noteId",
@@ -54,14 +68,17 @@ router.post(
 	requireAuth,
 	validateNotes,
 	asyncHandler(async (req, res) => {
-		const { title, content, notebookId, isTrashed, tagsArr } = req.body;
+		const { title, content, notebookId, isTrashed} = req.body;
+
+        //make the base model, then turn Tags into NoteTag models
 		const newNote = await Note.create({ title, content, notebookId, isTrashed});
 		const noteId = newNote.id;
 
-		for (let i = 0; i < tagsArr.length; i++) {
-			const tagId = tagsArr[i].id;
-			await NoteTag.create({ noteId, tagId });
-		}
+        //create NoteTag Models for each created note too
+		// for (let i = 0; i < setTags.length; i++) {
+		// 	const tagId = setTags[i].id;
+		// 	await NoteTag.create({ noteId, tagId });
+		// }
 		const note = await Note.findByPk(noteId, {
 			include: [Tag, Notebook],
 		});
@@ -69,5 +86,60 @@ router.post(
 	})
 );
 
+// UPDATE/ TRASH
+router.patch(
+	"/:noteId",
+	requireAuth,
+	validateNotes,
+	asyncHandler(async (req, res) => {
+
+		const noteId = parseInt(req.params.noteId, 10);
+		const oldNote = await Note.findByPk(noteId);
+
+        //bring in the tags that the user wants via req.body
+		const { title, content, notebookId, isTrashed, setTags } = req.body;
+
+        const updatedNote = await oldNote.update({
+          title: title,
+          content: content,
+          notebookId: notebookId,
+          isTrashed: isTrashed,
+        }) 
+
+        //if setTags has been touched/has data
+		if (setTags) {
+
+			let setTags = setTags.map((tag) => tag.id);
+
+            //tag already exists
+			for (let i = 0; i < setTags.length; i++) {
+				let tagId = setTags[i];
+				const found = await NoteTag.findOne({ where: { tagId, noteId } });
+
+            //tag is being added
+				if (!found) {
+					await NoteTag.create ({ tagId, noteId });
+				}
+			}
+
+			const UpdatedNoteTags = await NoteTag.findAll({ where: { noteId } });
+
+			for (let j = 0; j < UpdatedNoteTags.length; j++) {
+				let currentTag = UpdatedNoteTags[j];
+
+            //if we removed the tag, destroy the corresponding NoteTag model 
+				if (!setTags.has(currentTag.tagId)) {
+					await currentTag.destroy();
+				}
+			}
+		}
+		await updatedNote.save();
+		const finalNote = await Note.findByPk(noteId, {
+			include: [Tag, Notebook],
+		});
+
+		res.json(finalNote);
+	})
+);
 
 module.exports = router;
