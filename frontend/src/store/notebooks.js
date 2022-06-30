@@ -67,10 +67,12 @@ export const deleteANotebook = (notebook) => async (dispatch) => {
 	return data;
 };
 
-const initialState = { notebooks: null };
+const initialState = {};
 
 const notebookReducer = (state = initialState, action) => {
+
 	let newState;
+    
 	switch (action.type) {
 		case GET_ALL_NOTEBOOKS:
 			newState = {};
@@ -78,14 +80,17 @@ const notebookReducer = (state = initialState, action) => {
 				newState[notebook.id] = notebook;
 			});
 			return newState;
+
 		case ADD_UPDATE_NOTEBOOK:
 			newState = { ...state };
 			newState[action.notebook.id] = action.notebook;
 			return newState;
+
 		case DELETE_NOTEBOOK:
 			newState = { ...state };
 			delete newState[action.notebookId];
 			return newState;
+
 		default:
 			return state;
 	}

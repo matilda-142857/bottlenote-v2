@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
-import * as notebookActions from "../../store/notebooks";
+import * as notebookActions from "../../../store/notebooks";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
 import './Navigation.css';
 
-function NewNotebookForm() {
+function NewNotebookFormContent() {
     const dispatch = useDispatch();
     const notebooks = useSelector((state) => state.notebooks);
 	const [title, setTitle] = useState("");
 	const [errors, setErrors] = useState([]);
     const history = useHistory();
-
-	const cancel = (e) => {
-		e.stopPropagation();
-		setTitle("");
-	};
 
     const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -40,13 +34,9 @@ function NewNotebookForm() {
 
     return (
     <div className="new-nb-container">
-        <div id="new-nb-title">Create a new notebook:</div>
+        <div className="new-nb-title">Create a new notebook:</div>
         <form onSubmit={handleSubmit}>
-        <ul>
-            {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-            ))}
-        </ul>
+        
         <input
             type="text"
             value={title}
@@ -56,9 +46,6 @@ function NewNotebookForm() {
             required
         />
         <div className="new-nb-buttons">
-            <button className="btn nb-cancel" onClick={cancel}>
-                Cancel
-            </button>
             <button
                 className="btn nb-create"
                 type="submit"
@@ -67,9 +54,14 @@ function NewNotebookForm() {
                 Create
             </button>
         </div>
+        <ul className='new-nb-errors'>
+            {errors.map((error, idx) => ( 
+            <li key={idx}>{error}</li>
+            ))}
+        </ul>
         </form>
     </div>
     );
 };
 
-export default NewNotebookForm;
+export default NewNotebookFormContent;

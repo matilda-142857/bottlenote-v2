@@ -1,12 +1,11 @@
 import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import * as sessionActions from '../../store/session';
+import * as sessionActions from '../../../store/session';
 import { useDispatch } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
 import ScratchPad from './scratchPad';
 import "./Homepage.css";
-import NewNotebookForm from '../Navigation/newNotebook';
 
 function HomePage(){
 
@@ -44,9 +43,8 @@ function HomePage(){
       <h1 className='date-display'>{dateDisplay}</h1>
       <div className='bkg-overlay'/>
         <Navigation/>   
-        {/* <NoteBox/> */}
+        {/* <NoteBookBox/> */}
         <ScratchPad/>
-        {/* <NewNotebookForm /> */}
       </div>
     </main>
   );

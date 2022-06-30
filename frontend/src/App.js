@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
-// import Navigation from "./components/Navigation";
 import SplashPage from "./components/Splash/Splash";
-import HomePage from "./components/Home/HomePage";
-import NotesPage from "./components/NotePage";
+import HomePage from "./components/Main/Home/HomePage";
+import Main from "./components/Main/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,9 +22,20 @@ function App() {
         <Route path="/home">
           <HomePage />
         </Route>
-        <Route path="/notes">
-          <NotesPage />
-        </Route>
+        <Route
+					path={[
+						"/notes",
+						"/notes/:noteId",
+						"/notebooks",
+						"/notebooks/:notebookId",
+						"/notebooks/:notebookId/:noteId",
+						"/tags",
+						"/tags/:tagId",
+						"/trash",
+					]}
+				>
+					<Main />
+				</Route>
       </Switch>
     </>
   );

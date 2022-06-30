@@ -57,10 +57,12 @@ export const emptyAllTrash = () => async (dispatch) => {
 	return response;
 };
 
-const initialState = { trash: null };
+const initialState = {};
 
 const trashReducer = (state = initialState, action) => {
+
 	let newState;
+
 	switch (action.type) {
 		case GET_ALL_TRASH:
 			newState = {};
@@ -68,15 +70,18 @@ const trashReducer = (state = initialState, action) => {
 			newState[note.id] = note;
             });
 			return newState;
+
 		case DELETE_FOREVER:
 			newState = { ...state };
 			delete newState[action.note.id];
 			return newState;
+
         case RESTORE_NOTE:
             newState = { ...state };
             newState[action.note.id] = action.note;
             newState[action.note.id].isTrashed = false;
-            return newState;   
+            return newState;  
+             
 		case EMPTY_TRASH:
 			return {};
 		default:

@@ -45,11 +45,12 @@ router.post(
 			label
 		});
 
-		const tag = await Tag.findByPk(newTag.id, {
-			include: {
-				model: Note,
-				include: Tag,
-			},
+		const tag = await Tag.findByPk(
+        newTag.id, {
+            include: {
+                model: Note,
+                include: Tag,
+            },
 		});
 		res.json(tag);
 	})
