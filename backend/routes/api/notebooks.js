@@ -58,17 +58,31 @@ router.delete(
 	"/:notebookId",
 	requireAuth,
 	asyncHandler(async (req, res) => {
+        const userId = req.user.id;
 		const notebookId = parseInt(req.params.notebookId, 10);
-        const notebook = await Notebook.findByPk(notebookId);
-        const notes = await Note.findAll({ where: { notebookId } });
+		const primaryNotebook = await Notebook.findAll({
+			where: { userId },
+			order: [["id", "ASC"]],
+			limit: 1,
+		});
 
-		for (let i = 0; i < notes.length; i++) {
-			let note = notes[i];
-			note.isTrashed = true;
-			await note.save();
+		if (notebookId !== primaryNotebook[0].id) {
+			const notes = await Note.findAll({ where: { notebookId } });
+
+			for (let i = 0; i < notes.length; i++) {
+				let note = notes[i];
+				note.notebookId = primaryNotebook[0].id;
+				note.isTrashed = true;
+				await note.save();
+			}
+             await Notebook.destroy({
+                where: { id: notebookId },
+            });
+            res.json(notebookId);
+		    } else {
+			let err = new Error("You cannot delete your primary notebook!");
+			next(err);
 		}
-		await notebook.destroy();
-		res.json(notebookId);   
 	})
 );
 

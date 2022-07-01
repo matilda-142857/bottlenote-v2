@@ -42,11 +42,17 @@ const Navigation = () => {
 
               <li><NavLink to="/notes" className="navitem"><i class="fas fa-file"></i> Notes</NavLink></li>
 
-              <li><NavLink to="/notebooks" className="navitem notebooktab"><i class="fas fa-solid fa-book"></i> Notebooks</NavLink>
+              <li><div className="navitem notebooktab" onClick={() => setShowNotebooks(!showNotebooks)}><i class="fas fa-solid fa-book"></i> Notebooks</div>
                 <i className="fas fa-chevron-circle-left"
                 onClick={() => setShowNotebooks(!showNotebooks)}></i> 
                 {showNotebooks && <NotebookDropdown/>}
               </li>
+
+              {/* <li><NavLink to="/notebooks" className="navitem notebooktab"><i class="fas fa-solid fa-book"></i> Notebooks</NavLink>
+                <i className="fas fa-chevron-circle-left"
+                onClick={() => setShowNotebooks(!showNotebooks)}></i> 
+                {showNotebooks && <NotebookDropdown/>}
+              </li> */}
 
               <li className="navitem"
                 onClick={() => setShowTags(!showTags)}>

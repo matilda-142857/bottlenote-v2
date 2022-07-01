@@ -11,17 +11,17 @@ import "react-quill/dist/quill.snow.css";
 
 const NoteEdit = () => {
 
-	// const { noteId } = useParams();
+	const { noteId } = useParams();
 
-	// const dispatch = useDispatch();
-	// const history = useHistory();
+	const dispatch = useDispatch();
+	const history = useHistory();
 
-	// // const notes = useSelector((state) => state.notes);
-	// // const notebooks = useSelector((state) => state.notebooks);
-	// // const tags = useSelector((state) => state.tags);
+	const notes = useSelector((state) => state.notes);
+	const notebooks = useSelector((state) => state.notebooks);
+	const tags = useSelector((state) => state.tags);
 
-	// //title, content, tags of note, and all tags
-	// //TODO: user can change nb name in the nbsidebar ele
+	// title, content, tags of note, and all tags
+	//TODO: user can change nb name in the nbsidebar ele
 
 	// const moveToTrash = async () => {
 	// 	if (noteId !== "new") {

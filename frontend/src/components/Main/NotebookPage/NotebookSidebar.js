@@ -43,7 +43,7 @@ const NotebookSidebar = () => {
 
   function deleteNB(){
     dispatch(notebookActions.deleteANotebook(notebook))
-    history.push("/notebooks");
+    history.push("/notes");
   }
 
   const notesSorted = Object.values(notes).sort((a, b) =>
