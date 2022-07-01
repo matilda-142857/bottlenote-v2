@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import NoteSidebar from "./NoteSidebar";
 import NoteEdit from "./NoteEdit";
+import NoteLess from "../NotebookPage/NotelessBookPage";
 
 const NotesPage = () => {
 	return (
@@ -10,10 +11,10 @@ const NotesPage = () => {
 			<Navigation />
             <NoteSidebar/>
 			<Route path="/notes" exact>
-				{/* <NotePage /> */}
+				<NoteLess />
 			</Route>
 			<Route path="/notes/:noteId">
-				{/* <NotePage /> */}
+				<NoteEdit />
 			</Route>
 		</main>
 	);

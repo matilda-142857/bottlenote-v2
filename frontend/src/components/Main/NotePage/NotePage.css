@@ -163,6 +163,10 @@
     margin-left: 800px;
   }
 
+  .title-textarea{
+    font-size: 40px;
+    margin-left: 36%;
+  }
   .text-editor{
     font-size:20px;
     margin-left: 36%;
@@ -173,6 +177,44 @@
     width: auto;
     height: auto;
     border: solid black 1px;
+  }
+
+  .ql-container ql-snow{
+    height: 100vh;
+  }
+
+  .undefined-text{
+    margin-left: 58%;
+    margin-top: 22%;
+    position: absolute;
+    font-weight: 100;
+  }
+
+  .undefined-dolphin{
+    width: 12%;
+    height:40%;
+    margin-left: 62%;
+    margin-top: 8%;
+    position: absolute;
+    transform: rotate(30deg);
+  }
+
+  .undefined-wave{
+    width: 20%;
+    height:48%;
+    margin-left: 58%;
+    margin-top:20%;
+    position: absolute;
+  }
+
+  .undefined-splash{
+    width: 600px;
+    height:450px;
+    opacity: 60%;
+    margin-left: 50%;
+    margin-top:8%;
+    position: absolute;
+    z-index: -1;
   }
 
 

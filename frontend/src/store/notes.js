@@ -48,17 +48,16 @@ export const addNewNote = (newNote) => async (dispatch) => {
 		body: JSON.stringify(newNote),
 	});
 	const data = await response.json();
-    console.log("SCREEEEEEEEE", data)
 	dispatch(addUpdateNote(data));
 	return data.id;
 };
 
 export const editNote = (noteId, note) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes/${noteId}`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-		method: "PATCH",
 		body: JSON.stringify(note),
 	});
 	const data = await response.json();
@@ -69,10 +68,10 @@ export const editNote = (noteId, note) => async (dispatch) => {
 //CHANGES iSTRASHED VALUE. Delete is in trash.js
 export const trashNote = (noteId, note) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes/${noteId}`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-		method: "PATCH",
 		body: JSON.stringify(note),
 	});
 	const data = await response.json();
@@ -90,7 +89,6 @@ const notesReducer = (state = initialState, action) => {
 
 		case GET_ALL_NOTES:
 			newState = {...state};
-            console.log("wwwwwwwwwwwwwwwwwwwww" ,action.notes)
 			action.notes.forEach((note) => {
 			newState[note.id] = note; 
             });
@@ -101,11 +99,16 @@ const notesReducer = (state = initialState, action) => {
 			newState[action.note.id] = action.note;
 			return newState;
 
-		case TRASH_NOTE:
+        case TRASH_NOTE:
             newState = { ...state };
-            newState[action.note.id] = action.note;
-            newState[action.note.id].isTrashed = true;
-            return newState;   
+            delete newState[action.note.id];
+            return newState;
+
+		// case TRASH_NOTE:
+        //     newState = { ...state };
+        //     newState[action.note.id] = action.note;
+        //     newState[action.note.id].isTrashed = true;
+        //     return newState;   
 
 		default:
 			return state;

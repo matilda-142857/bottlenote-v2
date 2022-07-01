@@ -87,7 +87,7 @@ router.post(
 );
 
 // UPDATE/ TRASH
-router.patch(
+router.post(
 	"/:noteId",
 	requireAuth,
 	validateNotes,
@@ -97,48 +97,50 @@ router.patch(
 		const oldNote = await Note.findByPk(noteId);
 
         //bring in the tags that the user wants via req.body
-		const { title, content, notebookId, isTrashed, setTags } = req.body;
+		const { title, content, notebookId, isTrashed } = req.body;
+        console.log(req.body)
 
         const updatedNote = await oldNote.update({
-          title: title,
-          content: content,
-          notebookId: notebookId,
-          isTrashed: isTrashed,
+            title,
+            content,
+            notebookId,
+            isTrashed,
         }) 
 
         //if setTags has been touched/has data
-		if (setTags) {
+		// if (setTags) {
 
-			let setTags = setTags.map((tag) => tag.id);
+		// 	let setTags = setTags.map((tag) => tag.id);
 
-            //tag already exists
-			for (let i = 0; i < setTags.length; i++) {
-				let tagId = setTags[i];
-				const found = await NoteTag.findOne({ where: { tagId, noteId } });
+        //     //tag already exists
+		// 	for (let i = 0; i < setTags.length; i++) {
+		// 		let tagId = setTags[i];
+		// 		const found = await NoteTag.findOne({ where: { tagId, noteId } });
 
-            //tag is being added
-				if (!found) {
-					await NoteTag.create ({ tagId, noteId });
-				}
-			}
+        //     //tag is being added
+		// 		if (!found) {
+		// 			await NoteTag.create ({ tagId, noteId });
+		// 		}
+		// 	}
 
-			const UpdatedNoteTags = await NoteTag.findAll({ where: { noteId } });
+		// 	const UpdatedNoteTags = await NoteTag.findAll({ where: { noteId } });
 
-			for (let j = 0; j < UpdatedNoteTags.length; j++) {
-				let currentTag = UpdatedNoteTags[j];
+		// 	for (let j = 0; j < UpdatedNoteTags.length; j++) {
+		// 		let currentTag = UpdatedNoteTags[j];
 
-            //if we removed the tag, destroy the corresponding NoteTag model 
-				if (!setTags.has(currentTag.tagId)) {
-					await currentTag.destroy();
-				}
-			}
-		}
+        //     //if we removed the tag, destroy the corresponding NoteTag model 
+		// 		if (!setTags.has(currentTag.tagId)) {
+		// 			await currentTag.destroy();
+		// 		}
+		// 	}
+		// }
 		await updatedNote.save();
 		const finalNote = await Note.findByPk(noteId, {
 			include: [Tag, Notebook],
 		});
 
 		res.json(finalNote);
+        
 	})
 );
 

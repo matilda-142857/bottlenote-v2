@@ -68,9 +68,6 @@ const NotebookSidebar = () => {
             <div className="notes-box-number">
                 {notesSorted.length} notes 
             </div>
-            {/* <NavLink>
-              New Note
-            </NavLink> */}
            
         </div>
         {notesSorted.map((note) => (
