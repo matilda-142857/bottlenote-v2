@@ -66,7 +66,7 @@ router.get(
 router.post(
 	"/new",
 	requireAuth,
-	validateNotes,
+	// validateNotes,
 	asyncHandler(async (req, res) => {
 		const { title, content, notebookId, isTrashed} = req.body;
 
@@ -90,7 +90,7 @@ router.post(
 router.post(
 	"/:noteId",
 	requireAuth,
-	validateNotes,
+	// validateNotes,
 	asyncHandler(async (req, res) => {
 
 		const noteId = parseInt(req.params.noteId, 10);

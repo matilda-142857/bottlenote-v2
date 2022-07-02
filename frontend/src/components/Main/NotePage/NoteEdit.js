@@ -18,16 +18,15 @@ const NoteEdit = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
-	// const notes = useSelector((state) => state.notes);
+	const notes = useSelector((state) => state.notes);
 	// const notebooks = useSelector((state) => state.notebooks);
 	// const tags = useSelector((state) => state.tags);
 
-	const note = useSelector((state) => state.notes[noteId]);
-
-	const [noteTitle, setNoteTitle] = useState(note.title);
-	const [noteContent, setNoteContent] = useState(note.content);
-
-	console.log(note)
+	const note = useSelector((state) => state.notes[Number(noteId)]);
+	
+	const [noteTitle, setNoteTitle] = useState(note?.title || '');
+	const [noteContent, setNoteContent] = useState(note?.content || '');
+	const [thisNoteId, setThisNoteId] = useState(note?.id || 0); 
 
 	useEffect(() => {
 		dispatch(notesActions.editNote(noteId, { title: noteTitle }));
@@ -37,13 +36,21 @@ const NoteEdit = () => {
 		dispatch(notesActions.editNote(noteId, { content: noteContent}));
 	}, [noteContent]);
 
+	useEffect(() => {
+		if ( note.id !== thisNoteId){
+			setNoteTitle(note.title)
+			setNoteContent(note.content)
+			setThisNoteId(note.id);
+		}
+	}, [thisNoteId, note]);
+
 	const moveToTrash = async () => {
 		if (noteId !== "undefined") {
 			const note = {
 				isTrashed: true,
 			};
-			await dispatch(notesActions.trashNote(noteId, note));
-			await dispatch(trashActions.getAllTrash());
+			dispatch(notesActions.trashNote(noteId, note));
+			dispatch(trashActions.getAllTrash());
 			history.push("/notes");
 		} else {
 			history.push("/notes");
@@ -57,7 +64,9 @@ const NoteEdit = () => {
 				type="text"
 				name="noteTitle"
 				value={noteTitle}
-				onChange={(e) => setNoteTitle(e.target.value)}
+				onChange={(e) => setNoteTitle(e.target.value)
+				}
+				placeholder={"Untitled"}
 			/>
 			 <button className='notebook-delete' button onClick={() => moveToTrash()}>
                 Test Delete

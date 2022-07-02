@@ -3,6 +3,7 @@ import * as notebookActions from "../../../store/notebooks";
 import * as notesActions from "../../../store/notes"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import DeleteNBFormModal from "./DeleteModal";
 import { NavLink } from "react-router-dom";
 
 const NotebookSidebar = () => {
@@ -41,10 +42,11 @@ const NotebookSidebar = () => {
       history.push(`/notebooks/${notebookId}/${newNoteId}`);
     };
 
-  function deleteNB(){
-    dispatch(notebookActions.deleteANotebook(notebook))
-    history.push("/notes");
-  }
+  // function deleteNB(){
+  //   dispatch(notebookActions.deleteANotebook(notebook))
+  //   dispatch(notesActions.getAllNotes())
+  //   history.push("/notes");
+  // }
 
   const notesSorted = Object.values(notes).sort((a, b) =>
     b.updatedAt.localeCompare(a.updatedAt)
@@ -59,12 +61,12 @@ const NotebookSidebar = () => {
             <i className="fas fa-book-open" id="openbook-icon"></i>
               {notebook.title}
             </div>
+
               <button className='notebook-newnote' button onClick={() => newNote()}>
                   Add a note
               </button>
-              <button className='notebook-delete' button onClick={() => deleteNB()}>
-                Test Delete
-              </button>
+              <DeleteNBFormModal/>
+
             <div className="notes-box-number">
                 {notesSorted.length} notes 
             </div>
@@ -73,7 +75,9 @@ const NotebookSidebar = () => {
         {notesSorted.map((note) => (
           <Link to={`/notebooks/${notebookId}/${note.id}`} key={note.id}>
             <div className="note-ele">
-              <div className="note-title">{note.title}</div>
+              <div className="note-title">
+                {note.title}
+              </div>
               <div className="note-content-preview">
                 {note.content}
               </div>
@@ -100,9 +104,7 @@ const NotebookSidebar = () => {
               <button className='notebook-newnote' button onClick={() => newNote()}>
                 Add a note
               </button>
-              <button className='notebook-delete' button onClick={() => deleteNB()}>
-                Test Delete
-              </button>
+              <DeleteNBFormModal/>
             <div className="notes-box-number">
                 {notesSorted.length} notes 
             </div>

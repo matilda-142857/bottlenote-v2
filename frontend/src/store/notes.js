@@ -60,9 +60,11 @@ export const editNote = (noteId, note) => async (dispatch) => {
         },
 		body: JSON.stringify(note),
 	});
-	const data = await response.json();
-	dispatch(addUpdateNote(data));
-	return response;
+    if (response.ok){
+        const data = await response.json();
+	    dispatch(addUpdateNote(data));
+    }
+	// return response;
 };
 
 //CHANGES iSTRASHED VALUE. Delete is in trash.js
@@ -90,8 +92,9 @@ const notesReducer = (state = initialState, action) => {
 		case GET_ALL_NOTES:
 			newState = {...state};
 			action.notes.forEach((note) => {
-			newState[note.id] = note; 
-            });
+                if (!note.isTrashed){
+			        newState[note.id] = note; 
+                }})
 			return newState;
 
 		case ADD_UPDATE_NOTE:
@@ -100,9 +103,10 @@ const notesReducer = (state = initialState, action) => {
 			return newState;
 
         case TRASH_NOTE:
-            newState = { ...state };
-            delete newState[action.note.id];
-            return newState;
+			newState = { ...state };
+            newState[action.note.id].isTrashed = true;
+			delete newState[action.note.id];
+			return newState;
 
 		// case TRASH_NOTE:
         //     newState = { ...state };

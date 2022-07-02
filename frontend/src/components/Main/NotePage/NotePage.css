@@ -1,11 +1,12 @@
 
 .notes-box{
     width: 19%;
-    height: 100%;
+    height: 100vh;
     background: #f5f8fb;
     padding: 20px 0px;
     position: fixed;
     margin-left: 16%;
+    overflow-y: auto;
   }
   
 .notes-box-top {
@@ -74,6 +75,7 @@
   .note-box-end{
     padding-left:26%;
     padding-top: 15%;
+    padding-bottom: 15%;
     color: #8b9197;
   }
 
