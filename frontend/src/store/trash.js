@@ -25,10 +25,10 @@ export const emptyTrash = () => {
 	};
 };
 
-export const restoreNote = (note) => {
+export const restoreNote = (noteId) => {
 	return {
 		type: RESTORE_NOTE,
-		note,
+		noteId,
 	};
 };
 
@@ -75,15 +75,21 @@ const trashReducer = (state = initialState, action) => {
 			newState = { ...state };
 			delete newState[action.note.id];
 			return newState;
-
+        
         case RESTORE_NOTE:
             newState = { ...state };
-            newState[action.note.id] = action.note;
-            newState[action.note.id].isTrashed = false;
-            return newState;  
+            delete newState[action.noteId];
+            return newState;
+
+        // case RESTORE_NOTE:
+        //     newState = { ...state };
+        //     newState[action.note.id] = action.note;
+        //     newState[action.note.id].isTrashed = false;
+        //     return newState;  
              
 		case EMPTY_TRASH:
 			return {};
+
 		default:
 			return state;
 	}

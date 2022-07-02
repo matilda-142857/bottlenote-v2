@@ -3,6 +3,8 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_NOTES = "notes/GET_ALL_NOTES";
 const ADD_UPDATE_NOTE = "notes/ADD_UPDATE_NOTE";
 const TRASH_NOTE = "notes/TRASH_NOTE";
+const TRASH_NOTES = "notes/TRASH_NOTES";
+const RESTORED_NOTE = "notes/RESTORED_NOTE";
 
 const getNotes = (notes) => {
 	return {
@@ -25,6 +27,20 @@ const trashedNote = (note) => {
 	};
 };
 
+const trashedNotes = (notes) => {
+	return {
+		type: TRASH_NOTES,
+		notes
+	};
+};
+
+export const restoredNote = (note) => {
+	return {
+		type: RESTORED_NOTE,
+		note,
+	};
+};
+
 export const getAllNotes = () => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes`);
 	const data = await response.json();
@@ -32,12 +48,12 @@ export const getAllNotes = () => async (dispatch) => {
 	return response;
 };
 
-// export const getAllNotebookNotes = (notebookId) => async (dispatch) => {
-// 	const response = await csrfFetch(`/api/notes/${notebookId}`);
-// 	const data = await response.json();
-// 	dispatch(getNotes(data));
-// 	return response;
-// };
+export const trashAllNotebookNotes = (notebookId) => async (dispatch) => {
+	const response = await csrfFetch(`/api/notes/trash/${notebookId}`);
+	const data = await response.json();
+	dispatch(trashedNotes(data));
+	return response;
+};
 
 export const addNewNote = (newNote) => async (dispatch) => {
 	const response = await csrfFetch("/api/notes/new", {
@@ -104,15 +120,30 @@ const notesReducer = (state = initialState, action) => {
 
         case TRASH_NOTE:
 			newState = { ...state };
-            newState[action.note.id].isTrashed = true;
+            // newState[action.note.id].isTrashed = true;
 			delete newState[action.note.id];
 			return newState;
 
-		// case TRASH_NOTE:
+        case TRASH_NOTES:
+            newState = { ...state };
+            action.notes.forEach((note) => {
+                delete newState[note.id];
+            })
+            return newState;  
+
+        case RESTORED_NOTE:
+            newState = { ...state };
+            newState[action.note.id] = action.note;
+            newState[action.note.id].trash = false;
+            return newState;
+
+        // case TRASH_NOTES:
         //     newState = { ...state };
-        //     newState[action.note.id] = action.note;
-        //     newState[action.note.id].isTrashed = true;
-        //     return newState;   
+        //     action.notes.forEach((note) => {
+        //         newState[note.id].isTrashed = true;
+        //         delete newState[note.id];
+        //     })
+        //     return newState;  
 
 		default:
 			return state;

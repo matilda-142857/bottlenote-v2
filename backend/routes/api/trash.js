@@ -30,17 +30,17 @@ router.delete(
 	requireAuth,
 	asyncHandler(async (req, res) => {
 		const noteId = parseInt(req.params.noteId, 10);
+        const note = await Note.findByPk(noteId);
+		// const note = await Note.findByPk(noteId, {
+		// 	include: Tag,
+		// });
 
-		const note = await Note.findByPk(noteId, {
-			include: Tag,
-		});
-
-		if (note.Tags.length > 0) {
-			for (let i = 0; i < note.Tags.length; i++) {
-				let tagId = note.Tags[i].id;
-				await NoteTag.destroy({ where: { tagId, noteId } });
-			}
-		}
+		// if (note.Tags.length > 0) {
+		// 	for (let i = 0; i < note.Tags.length; i++) {
+		// 		let tagId = note.Tags[i].id;
+		// 		await NoteTag.destroy({ where: { tagId, noteId } });
+		// 	}
+		// }
 		await note.destroy();
 		res.json(noteId);
 	})

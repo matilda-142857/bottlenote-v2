@@ -185,6 +185,25 @@
     height: 100vh;
   }
 
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #dddddd;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(245, 245, 245);
+    background: linear-gradient(
+      0deg,
+      rgb(187, 226, 226) 0%,
+      rgb(97, 185, 193) 57%,
+      rgb(187, 226, 226) 100%
+    );
+    border-radius: 2.5px;
+  }
+
   .undefined-text{
     margin-left: 58%;
     margin-top: 22%;

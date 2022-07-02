@@ -59,11 +59,11 @@ const NotebookSidebar = () => {
         <div className="notes-box-top">
             <div className ="notes-box-name">
             <i className="fas fa-book-open" id="openbook-icon"></i>
-              {notebook.title}
+              {notebook?.title}
             </div>
 
               <button className='notebook-newnote' button onClick={() => newNote()}>
-                  Add a note
+                <i className="fas fa-plus"></i>
               </button>
               <DeleteNBFormModal/>
 
@@ -102,7 +102,7 @@ const NotebookSidebar = () => {
               {notebook.title}
             </div>
               <button className='notebook-newnote' button onClick={() => newNote()}>
-                Add a note
+                <i className="fas fa-plus"></i>
               </button>
               <DeleteNBFormModal/>
             <div className="notes-box-number">

@@ -7,12 +7,12 @@ const { Notebook, Note, Tag, NoteTag } = require("../../db/models");
 
 const router = express.Router();
 
-const validateNotes = [
-    check('title')
-    .isLength({ min: 1, max: 50 })
-	.withMessage("Title must be between 1 and 50 characters long"),
-	handleValidationErrors,
-];
+// const validateNotes = [
+//     check('title')
+//     .isLength({ min: 1, max: 50 })
+// 	.withMessage("Title must be between 1 and 50 characters long"),
+// 	handleValidationErrors,
+// ];
 
 //READ (all)
 router.get(
@@ -46,6 +46,22 @@ router.get(
 			order: [["updatedAt", "DESC"]],
 		});
 		res.json(notes);
+	})
+);
+
+router.get(
+	"/trash/:notebookId",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+        const notebookId = parseInt(req.params.notebookId, 10);
+		const notes = await Note.findAll({
+			where: { notebookId },
+			order: [["updatedAt", "DESC"]],
+		});
+        for (let i = 0; i < notes.length; i++) {
+            notes[i].isTrashed= true;
+        }
+        res.json(notes);
 	})
 );
 

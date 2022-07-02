@@ -71,6 +71,7 @@ const NoteEdit = () => {
 			 <button className='notebook-delete' button onClick={() => moveToTrash()}>
                 Test Delete
               </button>
+			  {/* <EditorToolbar /> */}
 			  <textarea
 				className="text-editor"
 				type="text"
@@ -83,6 +84,8 @@ const NoteEdit = () => {
 				<EditorToolbar />
 				<ReactQuill
 					theme="snow"
+					type="text"
+					name="noteTitle"
 					value={noteContent}
 					onChange={(e) => setNoteContent(e.target.value)}
 					placeholder={"Write something awesome..."}

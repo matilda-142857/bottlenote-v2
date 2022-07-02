@@ -27,12 +27,17 @@ const Navigation = () => {
     $(this).toggleClass('rotate')
   })
 
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+  };
+
   return (
     <main className="navigation">
       <div className="navigation-side">
         <div className="navigation-top">
           <div className="profile-button"></div>
-          <ProfileButton/>
+          {/* <ProfileButton/> */}
           <p className="profile-icon">{sessionUser.username}</p>
         </div>
         
@@ -54,13 +59,15 @@ const Navigation = () => {
                 {showNotebooks && <NotebookDropdown/>}
               </li> */}
 
-              <li className="navitem"
+              {/* <li className="navitem"
                 onClick={() => setShowTags(!showTags)}>
                 <i className="fas fa-solid fa-tags"></i> Tags
                 {showTags && <TagsDropdown/>}
-              </li>
+              </li> */}
 
               <li><NavLink to="/trash" className="navitem"><i class="fas fa-trash"></i> Trash</NavLink></li>
+
+              <li className="navitembot"><NavLink to="/" onClick={logout}className="navitem"><i className="fas fa-sign-out-alt"></i> Logout</NavLink></li>
 
           </ul> 
       </div>

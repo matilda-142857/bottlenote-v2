@@ -22,7 +22,8 @@ router.get(
 		const userId = req.user.id;
 		const notebooks = await Notebook.findAll({
 			where: { userId },
-		});
+		    }
+        );
 		res.json(notebooks);
 	})
 );

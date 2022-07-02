@@ -13,9 +13,10 @@ function DeleteModal() {
 	const notebook = useSelector((state) => state.notebooks[notebookId]);
 
 	const deleteNB = async () => {
-		dispatch(notebooksActions.deleteANotebook(notebook));
-		dispatch(notesActions.getAllNotes());
-		dispatch(trashActions.getAllTrash());
+		await dispatch(notebooksActions.deleteANotebook(notebook));
+		await dispatch(notesActions.trashAllNotebookNotes(notebookId));
+		await dispatch(notesActions.getAllNotes());
+		await dispatch(trashActions.getAllTrash());
 		history.push("/notes");
 	};
 
