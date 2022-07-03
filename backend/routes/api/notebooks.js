@@ -70,6 +70,7 @@ router.delete(
 		if (notebookId !== primaryNotebook[0].id) {
 			const notes = await Note.findAll({ where: { notebookId } });
 
+            //restoring a note puts it back in the primary nb
 			for (let i = 0; i < notes.length; i++) {
 				let note = notes[i];
 				note.notebookId = primaryNotebook[0].id;

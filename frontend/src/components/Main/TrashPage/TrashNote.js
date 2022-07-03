@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, Redirect, useHistory, useParams } from "react-router-dom";
+import '../NotePage/NotePage.css';
 
 import { useSelector, useDispatch } from "react-redux";
 import * as notesActions from '../../../store/notes';
@@ -16,10 +17,11 @@ const NoteTrash = () => {
 	const note = useSelector((state) => state.trash[noteId]);
 	console.log(note)
     
-    const deleteNote = async () => {
-        await dispatch(trashActions.deleteOneTrash(noteId));
-        history.push("/trash");
-    };
+	const deleteNote = async () => {
+		await dispatch(trashActions.deleteOneTrash(noteId));
+		await dispatch(trashActions.getAllTrash());
+		history.push("/trash");
+	};
 
 	const restoreNote = async () => {
 		const toRestore = { isTrashed: false };
@@ -41,11 +43,11 @@ const NoteTrash = () => {
 				// }
 				placeholder={"Untitled"}
 			/>
-			 <button className='notebook-delete-forever' button onClick={() => deleteNote()}>
-                Test Delete
+			 <button className='trash-note-delete' button onClick={() => deleteNote()}>
+                Delete Note
               </button>
-			  <button className='notebook-delete-forever' button onClick={() => restoreNote()}>
-                Test Restore
+			  <button className='trash-note-restore' button onClick={() => restoreNote()}>
+                Restore Note
               </button>
 			  {/* <EditorToolbar /> */}
 			  <textarea

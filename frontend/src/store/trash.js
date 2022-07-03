@@ -64,6 +64,7 @@ const trashReducer = (state = initialState, action) => {
 	let newState;
 
 	switch (action.type) {
+
 		case GET_ALL_TRASH:
 			newState = {};
 			action.trash.forEach((note) => {
@@ -73,7 +74,7 @@ const trashReducer = (state = initialState, action) => {
 
 		case DELETE_FOREVER:
 			newState = { ...state };
-			delete newState[action.note.id];
+			delete newState[action.noteId];
 			return newState;
         
         case RESTORE_NOTE:

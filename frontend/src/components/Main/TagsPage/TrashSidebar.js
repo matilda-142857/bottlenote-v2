@@ -34,7 +34,7 @@ const TagsSidebar = () => {
             <div className="notes-box-number">
                 {tagsSorted.length} notes 
             </div>
-            
+
         </div>
         {notesSorted.map((note) => (
           <Link to={`/trash/${note.id}`} key={note.id}>

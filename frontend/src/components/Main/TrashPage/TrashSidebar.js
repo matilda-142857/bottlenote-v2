@@ -3,6 +3,7 @@ import { getAllTrash } from "../../../store/trash";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import '../NotePage/NotePage.css';
+import * as trashActions from '../../../store/trash';
 
 const TrashSidebar = () => {
 
@@ -11,6 +12,10 @@ const TrashSidebar = () => {
   const history = useHistory();
 
   const notes = useSelector((state) => state.trash);
+
+  const emptyTrash = async () => {
+    await dispatch(trashActions.emptyAllTrash());
+    }
 
   const notesSorted = Object.values(notes).sort((a, b) =>
     b.updatedAt.localeCompare(a.updatedAt)
@@ -31,8 +36,11 @@ const TrashSidebar = () => {
             <i className="fas fa-book-open" id="openbook-icon"></i>
                 Your Trashed Notes
             </div>
-            <div className="notes-box-number">
+            <div className="notes-box-number-buttons">
                 {notesSorted.length} notes 
+                <button className="trash-all" onClick={emptyTrash}>
+					Empty Trash
+				</button>
             </div>
         </div>
         {notesSorted.map((note) => (
@@ -53,10 +61,23 @@ const TrashSidebar = () => {
   else {
 
     return (
-      <div className="no-notes-wrap">
-        <i className="fas fa-paper-plane"></i>
-        <div>Nothing in your trash</div>
-      </div>
+        <div className="notes-box">
+          <div className="notes-box-top">
+              <div className ="notes-box-name">
+              <i className="fas fa-book-open" id="openbook-icon"></i>
+                Your Notes
+              </div>
+              <div className="notes-box-number">
+                  {notesSorted.length} notes 
+              </div>
+          </div>
+          <div className="note-box-end">
+            <div className='empty-graphic'>
+                <i className="fas fa-paper-plane"></i>
+            </div>
+            <div>Nothing in your trash</div>
+          </div>
+        </div>
     );
   }
 };

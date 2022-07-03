@@ -134,7 +134,7 @@ const notesReducer = (state = initialState, action) => {
         case RESTORED_NOTE:
             newState = { ...state };
             newState[action.note.id] = action.note;
-            newState[action.note.id].trash = false;
+            newState[action.note.id].isTrashed = false;
             return newState;
 
         // case TRASH_NOTES:

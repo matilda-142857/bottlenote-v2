@@ -42,12 +42,6 @@ const NotebookSidebar = () => {
       history.push(`/notebooks/${notebookId}/${newNoteId}`);
     };
 
-  // function deleteNB(){
-  //   dispatch(notebookActions.deleteANotebook(notebook))
-  //   dispatch(notesActions.getAllNotes())
-  //   history.push("/notes");
-  // }
-
   const notesSorted = Object.values(notes).sort((a, b) =>
     b.updatedAt.localeCompare(a.updatedAt)
   );
@@ -61,16 +55,14 @@ const NotebookSidebar = () => {
             <i className="fas fa-book-open" id="openbook-icon"></i>
               {notebook?.title}
             </div>
-
-              <button className='notebook-newnote' button onClick={() => newNote()}>
-                <i className="fas fa-plus"></i>
-              </button>
-              <DeleteNBFormModal/>
-
-            <div className="notes-box-number">
+            <div className="notes-box-number-buttons">
                 {notesSorted.length} notes 
+                <DeleteNBFormModal/>
+                <button className='notebook-newnote' button onClick={() => newNote()}>
+                {/* <i className="fas fa-plus"></i> */}
+                New Note
+                </button>
             </div>
-           
         </div>
         {notesSorted.map((note) => (
           <Link to={`/notebooks/${notebookId}/${note.id}`} key={note.id}>
@@ -79,7 +71,7 @@ const NotebookSidebar = () => {
                 {note.title}
               </div>
               <div className="note-content-preview">
-                {note.content}
+                {note.content.slice(0, 35) + '...'}
               </div>
             </div>
           </Link>
@@ -101,17 +93,20 @@ const NotebookSidebar = () => {
             <i className="fas fa-book-open" id="openbook-icon"></i>
               {notebook.title}
             </div>
-              <button className='notebook-newnote' button onClick={() => newNote()}>
-                <i className="fas fa-plus"></i>
-              </button>
-              <DeleteNBFormModal/>
-            <div className="notes-box-number">
+              <div className="notes-box-number-buttons">
                 {notesSorted.length} notes 
-            </div>
+                <DeleteNBFormModal/>
+                <button className='notebook-newnote' button onClick={() => newNote()}>
+                {/* <i className="fas fa-plus"></i> */}
+                New Note
+                </button>
+              </div>
         </div>
-          <div className="no-notes-wrap">
-            <i className="fas fa-signature"></i>
-            <i className="fas fa-pen"></i>
+          <div className="note-box-end">
+            <div className='empty-graphic'>
+              <i className="fas fa-signature"></i>
+              <i className="fas fa-pen"></i>
+            </div>
             <div>It starts with a note...</div>
         </div>
       </div>

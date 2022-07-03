@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { getAllNotes } from "./notes";
 
 const GET_ALL_NOTEBOOKS = "notebooks/GET_ALL_NOTEBOOKS";
 const ADD_UPDATE_NOTEBOOK = "notebooks/ADD_UPDATE_NOTEBOOK";
@@ -72,7 +73,7 @@ const initialState = {};
 const notebookReducer = (state = initialState, action) => {
 
 	let newState;
-    
+
 	switch (action.type) {
 		case GET_ALL_NOTEBOOKS:
 			newState = {};
