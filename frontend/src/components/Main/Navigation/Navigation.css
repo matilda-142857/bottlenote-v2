@@ -10,7 +10,7 @@
     display: flex;
     position: absolute;
     box-sizing: border-box;
-
+    opacity: 100%;
   }
 
   .navigation-top{

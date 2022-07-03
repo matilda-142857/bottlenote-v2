@@ -59,6 +59,11 @@ const NoteEdit = () => {
 
 	return (
 		<>
+		<div className="note-edit-box">
+			<button className='notebook-delete' button onClick={() => moveToTrash()}>
+                Delete this Note
+            </button>
+			<div className="note-edit-bkg">
 			<textarea
 				className="title-textarea"
 				type="text"
@@ -68,9 +73,7 @@ const NoteEdit = () => {
 				}
 				placeholder={"Untitled"}
 			/>
-			 <button className='notebook-delete' button onClick={() => moveToTrash()}>
-                Test Delete
-              </button>
+
 			  {/* <EditorToolbar /> */}
 			  <textarea
 				className="text-editor"
@@ -93,6 +96,8 @@ const NoteEdit = () => {
 					formats={formats}
 					/>
 				</div> */}
+				</div>
+			</div>
 		</>
 	);
 }
