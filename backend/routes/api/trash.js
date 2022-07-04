@@ -20,7 +20,6 @@ router.get(
 			],
 			where: { isTrashed: true },
 		});
-        console.log(trash)
 		res.json(trash);
 	})
 );

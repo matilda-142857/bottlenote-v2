@@ -68,7 +68,7 @@ const NotebookSidebar = () => {
           <Link to={`/notebooks/${notebookId}/${note.id}`} key={note.id}>
             <div className="note-ele">
               <div className="note-title">
-                {note.title}
+                {note.title.slice(0, 20) + '...'}
               </div>
               <div className="note-content-preview">
                 {note.content.slice(0, 35) + '...'}

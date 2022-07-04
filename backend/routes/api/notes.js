@@ -54,13 +54,14 @@ router.get(
 	requireAuth,
 	asyncHandler(async (req, res) => {
         const notebookId = parseInt(req.params.notebookId, 10);
+        console.log( "NOTEBOOK ID HEEEEEEEEEEEERE" , notebookId)
 		const notes = await Note.findAll({
-			where: { notebookId },
-			order: [["updatedAt", "DESC"]],
+			where: {notebookId: notebookId},
 		});
         for (let i = 0; i < notes.length; i++) {
             notes[i].isTrashed= true;
         }
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA", notes)
         res.json(notes);
 	})
 );
@@ -114,7 +115,6 @@ router.post(
 
         //bring in the tags that the user wants via req.body
 		const { title, content, notebookId, isTrashed } = req.body;
-        console.log(req.body)
 
         const updatedNote = await oldNote.update({
             title,

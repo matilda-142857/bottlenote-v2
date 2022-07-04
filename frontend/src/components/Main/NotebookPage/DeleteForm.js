@@ -23,11 +23,11 @@ function DeleteModal() {
 	return (
 	<div className="new-nb-container">
         <div className="new-nb-title">Delete this notebook?</div>
-        <div>
+        <div className="delete-nb-message">
 			Your notes will be moved to the trash.
 		</div>
         <div className="new-nb-buttons">
-			<button className='notebook-delete' button onClick={() => deleteNB()}>
+			<button className='notebook-modal-delete' button onClick={() => deleteNB()}>
                 Confirm
             </button>
         </div>

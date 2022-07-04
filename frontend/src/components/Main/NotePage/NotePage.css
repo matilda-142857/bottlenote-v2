@@ -200,6 +200,25 @@
     cursor: pointer;
   }
 
+  .delete-nb-message{
+    margin-left: 85px;
+  }
+  .notebook-modal-delete{
+    background-color: #2e9caa;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: -150px;
+    margin-top: 10px;
+  }
+
   .trash-note-delete{
     position: absolute;
     margin-right: 10px;
@@ -293,7 +312,7 @@
   }
 
   .del-nb-button{
-    margin-left: 45%;
+    margin-left: 43%;
     margin-top: 5%;
     margin-right: 2%;
     background-color: #d2997b;

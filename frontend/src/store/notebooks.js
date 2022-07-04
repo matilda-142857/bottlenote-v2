@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-import { getAllNotes } from "./notes";
+import notesReducer, { getAllNotes } from "./notes";
 
 const GET_ALL_NOTEBOOKS = "notebooks/GET_ALL_NOTEBOOKS";
 const ADD_UPDATE_NOTEBOOK = "notebooks/ADD_UPDATE_NOTEBOOK";

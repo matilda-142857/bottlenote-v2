@@ -2,7 +2,7 @@ import * as sessionActions from "../../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllNotebooks } from "../../../store/notebooks";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "./Navigation.css";
 import NotebookDropdown from "./DropdownNB";
 import TagsDropdown from "./DropdownTags";
@@ -13,6 +13,7 @@ const Navigation = () => {
 
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
 
   const [showNotebooks, setShowNotebooks] = useState(false);
   const [showTags, setShowTags] = useState(false);
@@ -30,6 +31,7 @@ const Navigation = () => {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push('/home');
   };
 
   return (

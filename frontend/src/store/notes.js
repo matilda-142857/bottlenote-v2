@@ -27,7 +27,7 @@ const trashedNote = (note) => {
 	};
 };
 
-const trashedNotes = (notes) => {
+export const trashedNotes = (notes) => {
 	return {
 		type: TRASH_NOTES,
 		notes
@@ -51,6 +51,7 @@ export const getAllNotes = () => async (dispatch) => {
 export const trashAllNotebookNotes = (notebookId) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes/trash/${notebookId}`);
 	const data = await response.json();
+    console.log(data)
 	dispatch(trashedNotes(data));
 	return response;
 };
@@ -127,6 +128,7 @@ const notesReducer = (state = initialState, action) => {
         case TRASH_NOTES:
             newState = { ...state };
             action.notes.forEach((note) => {
+                note.isTrashed = true;
                 delete newState[note.id];
             })
             return newState;  
