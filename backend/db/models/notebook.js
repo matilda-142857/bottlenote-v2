@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userId" 
     });
 		Notebook.hasMany(models.Note, { 
-      foreignKey: "notebookId" 
+      foreignKey: "notebookId" ,
+      onDelete: "CASCADE",
+      hooks: true,
     });
   };
   return Notebook;

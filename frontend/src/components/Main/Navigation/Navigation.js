@@ -2,7 +2,7 @@ import * as sessionActions from "../../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllNotebooks } from "../../../store/notebooks";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "./Navigation.css";
 import NotebookDropdown from "./DropdownNB";
 import TagsDropdown from "./DropdownTags";
@@ -13,6 +13,7 @@ const Navigation = () => {
 
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
 
   const [showNotebooks, setShowNotebooks] = useState(false);
   const [showTags, setShowTags] = useState(false);
@@ -27,12 +28,18 @@ const Navigation = () => {
     $(this).toggleClass('rotate')
   })
 
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    history.push('/home');
+  };
+
   return (
     <main className="navigation">
       <div className="navigation-side">
         <div className="navigation-top">
           <div className="profile-button"></div>
-          <ProfileButton/>
+          {/* <ProfileButton/> */}
           <p className="profile-icon">{sessionUser.username}</p>
         </div>
         
@@ -42,19 +49,27 @@ const Navigation = () => {
 
               <li><NavLink to="/notes" className="navitem"><i class="fas fa-file"></i> Notes</NavLink></li>
 
-              <li><NavLink to="/notebooks" className="navitem notebooktab"><i class="fas fa-solid fa-book"></i> Notebooks</NavLink>
+              <li><div className="navitem notebooktab" onClick={() => setShowNotebooks(!showNotebooks)}><i class="fas fa-solid fa-book"></i> Notebooks</div>
                 <i className="fas fa-chevron-circle-left"
                 onClick={() => setShowNotebooks(!showNotebooks)}></i> 
                 {showNotebooks && <NotebookDropdown/>}
               </li>
 
-              <li className="navitem"
+              {/* <li><NavLink to="/notebooks" className="navitem notebooktab"><i class="fas fa-solid fa-book"></i> Notebooks</NavLink>
+                <i className="fas fa-chevron-circle-left"
+                onClick={() => setShowNotebooks(!showNotebooks)}></i> 
+                {showNotebooks && <NotebookDropdown/>}
+              </li> */}
+
+              {/* <li className="navitem"
                 onClick={() => setShowTags(!showTags)}>
                 <i className="fas fa-solid fa-tags"></i> Tags
                 {showTags && <TagsDropdown/>}
-              </li>
+              </li> */}
 
               <li><NavLink to="/trash" className="navitem"><i class="fas fa-trash"></i> Trash</NavLink></li>
+
+              <li className="navitembot"><NavLink to="/" onClick={logout}className="navitem"><i className="fas fa-sign-out-alt"></i> Logout</NavLink></li>
 
           </ul> 
       </div>

@@ -7,12 +7,12 @@ const { Notebook, Note, Tag, NoteTag } = require("../../db/models");
 
 const router = express.Router();
 
-const validateNotes = [
-    check('title')
-    .isLength({ min: 1, max: 50 })
-	.withMessage("Title must be between 1 and 50 characters long"),
-	handleValidationErrors,
-];
+// const validateNotes = [
+//     check('title')
+//     .isLength({ min: 1, max: 50 })
+// 	.withMessage("Title must be between 1 and 50 characters long"),
+// 	handleValidationErrors,
+// ];
 
 //READ (all)
 router.get(
@@ -49,6 +49,22 @@ router.get(
 	})
 );
 
+router.get(
+	"/trash/:notebookId",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+        const notebookId = parseInt(req.params.notebookId, 10);
+		const notes = await Note.findAll()
+
+        for (let i = 0; i < notes.length; i++) {
+            if (notes[i].notebookId === notebookId){
+                notes[i].isTrashed= true;
+            }
+	    }
+    res.json(notes);
+    })
+);
+
 //READ (one)
 router.get(
 	"/:noteId",
@@ -66,7 +82,7 @@ router.get(
 router.post(
 	"/new",
 	requireAuth,
-	validateNotes,
+	// validateNotes,
 	asyncHandler(async (req, res) => {
 		const { title, content, notebookId, isTrashed} = req.body;
 
@@ -87,58 +103,59 @@ router.post(
 );
 
 // UPDATE/ TRASH
-router.patch(
+router.post(
 	"/:noteId",
 	requireAuth,
-	validateNotes,
+	// validateNotes,
 	asyncHandler(async (req, res) => {
 
 		const noteId = parseInt(req.params.noteId, 10);
 		const oldNote = await Note.findByPk(noteId);
 
         //bring in the tags that the user wants via req.body
-		const { title, content, notebookId, isTrashed, setTags } = req.body;
+		const { title, content, notebookId, isTrashed } = req.body;
 
         const updatedNote = await oldNote.update({
-          title: title,
-          content: content,
-          notebookId: notebookId,
-          isTrashed: isTrashed,
+            title,
+            content,
+            notebookId,
+            isTrashed,
         }) 
 
         //if setTags has been touched/has data
-		if (setTags) {
+		// if (setTags) {
 
-			let setTags = setTags.map((tag) => tag.id);
+		// 	let setTags = setTags.map((tag) => tag.id);
 
-            //tag already exists
-			for (let i = 0; i < setTags.length; i++) {
-				let tagId = setTags[i];
-				const found = await NoteTag.findOne({ where: { tagId, noteId } });
+        //     //tag already exists
+		// 	for (let i = 0; i < setTags.length; i++) {
+		// 		let tagId = setTags[i];
+		// 		const found = await NoteTag.findOne({ where: { tagId, noteId } });
 
-            //tag is being added
-				if (!found) {
-					await NoteTag.create ({ tagId, noteId });
-				}
-			}
+        //     //tag is being added
+		// 		if (!found) {
+		// 			await NoteTag.create ({ tagId, noteId });
+		// 		}
+		// 	}
 
-			const UpdatedNoteTags = await NoteTag.findAll({ where: { noteId } });
+		// 	const UpdatedNoteTags = await NoteTag.findAll({ where: { noteId } });
 
-			for (let j = 0; j < UpdatedNoteTags.length; j++) {
-				let currentTag = UpdatedNoteTags[j];
+		// 	for (let j = 0; j < UpdatedNoteTags.length; j++) {
+		// 		let currentTag = UpdatedNoteTags[j];
 
-            //if we removed the tag, destroy the corresponding NoteTag model 
-				if (!setTags.has(currentTag.tagId)) {
-					await currentTag.destroy();
-				}
-			}
-		}
+        //     //if we removed the tag, destroy the corresponding NoteTag model 
+		// 		if (!setTags.has(currentTag.tagId)) {
+		// 			await currentTag.destroy();
+		// 		}
+		// 	}
+		// }
 		await updatedNote.save();
 		const finalNote = await Note.findByPk(noteId, {
 			include: [Tag, Notebook],
 		});
 
 		res.json(finalNote);
+        
 	})
 );
 

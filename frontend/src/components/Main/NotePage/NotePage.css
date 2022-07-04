@@ -1,11 +1,23 @@
+.note-edit-bkg{
+  background-image: url("../../../context/editnotebkg.webp");
+  background-attachment: fixed;
+  background-position: 100%;
+  background-repeat: no-repeat;
 
+  width: 100vw;
+  height: 200vh;
+  /* fix background fill !!!important */
+  /* position: fixed; */
+}
 .notes-box{
     width: 19%;
-    height: 100%;
+    height: 100vh;
     background: #f5f8fb;
     padding: 20px 0px;
     position: fixed;
     margin-left: 16%;
+    overflow-y: auto;
+    opacity:90%;
   }
   
 .notes-box-top {
@@ -25,10 +37,11 @@
 }
 
 .notes-box-number{
-    font-size: 17px;
+    /* font-size: 17px;
     padding: 2%;
-    margin-left: 5%;
-    margin-top: 4%;
+    margin-left: 5%; */
+    margin-bottom: 4%; 
+    position: fixed;
 }
 
 .note-ele{
@@ -74,7 +87,13 @@
   .note-box-end{
     padding-left:26%;
     padding-top: 15%;
+    padding-bottom: 15%;
     color: #8b9197;
+  }
+
+  .empty-graphic{
+    margin-left: 60px;
+    margin-bottom: 20px;
   }
 
   .fa-paper-plane{
@@ -163,9 +182,214 @@
     margin-left: 800px;
   }
 
-  .sanity{
+  .notebook-delete{
+    position: absolute;
+    margin-right: 10px;
+    right: .1%;
+    top: 7%;
+    background-color: #2e9caa;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .delete-nb-message{
+    margin-left: 85px;
+  }
+  .notebook-modal-delete{
+    background-color: #2e9caa;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: -150px;
+    margin-top: 10px;
+  }
+
+  .trash-note-delete{
+    position: absolute;
+    margin-right: 10px;
+    right: .1%;
+    top: 7%;
+    background-color: #d6b09b;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    opacity: 80%;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .trash-note-restore{
+    position: absolute;
+    margin-right: 150px;
+    right: .1%;
+    top: 7%;
+    background-color: #2e9caa;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    opacity: 80%;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .notebook-delete:hover{
+    background-color: #057785;
+  }
+
+  .trash-note-restore:hover{
+    opacity: 100%;
+  }
+
+  .trash-note-delete:hover{
+    background-color: #d4a394;
+    opacity: 100%;
+  }
+
+  .notes-box-number-buttons{
+    margin-left: 5%;
+  }
+
+  .notebook-newnote{
+    margin-top: 5%;
+    margin-right: 2%;
+    background-color: #2e9caa;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+    opacity: 80%;
+    display: inline-block;
+    text-decoration: none;
+    border: 2px #057785;
+  }
+
+  .notebook-newnote-notepage{
+    margin-top: 5%;
+    margin-left: 55%;
+    background-color: #2e9caa;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+    opacity: 80%;
+    display: inline-block;
+    text-decoration: none;
+    border: 2px #057785;
+  }
+
+  .notebook-newnote:hover{
+    background-color: #057785;
+  }
+
+  .del-nb-button{
+    margin-left: 43%;
+    margin-top: 5%;
+    margin-right: 2%;
+    background-color: #d2997b;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+    opacity: 80%;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .del-nb-button:hover{
+    background-color: #cc6c6c;;
+  }
+
+
+  .trash-all{
+    margin-left: 43%;
+    margin-top: 5%;
+    background-color: #d6b09b;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+    opacity: 80%;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .trash-all:hover{
+    background-color: #cd8d83;
+    opacity: 100%;
+  }
+
+
+  .title-textarea{
+    position: absolute;
+    font-size: 38px;
+    margin-top: 8%;
+    margin-left: 35.1%;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    width: 63.2%;
+    height: 53.2px;
+    background: transparent; 
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: #00313f solid .5px;
+    resize: none;
+  }
+
+  .title-textarea:focus{
+    outline:none;
+    border-bottom: #00313f solid .8px;
+  }
+
+  .text-editor{
     font-size:20px;
-    margin-left: 36%;
+    margin-left: 35%;
+    margin-top: 6.5%;
+    height: 80%;
+    width: 60%;
+    padding-top: 8%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgb(0, 0, 0);
+    resize: none
   }
 
   .note-page{
@@ -173,6 +397,64 @@
     width: auto;
     height: auto;
     border: solid black 1px;
+  }
+
+  .ql-container ql-snow{
+    height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #dddddd;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(245, 245, 245);
+    background: linear-gradient(
+      0deg,
+      rgb(187, 226, 226) 0%,
+      rgb(97, 185, 193) 57%,
+      rgb(187, 226, 226) 100%
+    );
+    border-radius: 2.5px;
+  }
+
+  .undefined-text{
+    margin-left: 58%;
+    margin-top: 22%;
+    position: absolute;
+    font-weight: 100;
+  }
+
+  .undefined-dolphin{
+    width: 12%;
+    height:40%;
+    margin-left: 62%;
+    margin-top: 8%;
+    position: absolute;
+    transform: rotate(30deg);
+  }
+
+  .undefined-wave{
+    width: 20%;
+    height:48%;
+    margin-left: 58%;
+    margin-top:20%;
+    position: absolute;
+  }
+
+  .undefined-splash{
+    width: 600px;
+    height:450px;
+    opacity: 60%;
+    margin-left: 50%;
+    margin-top:8%;
+    position: absolute;
+    z-index: -1;
   }
 
 

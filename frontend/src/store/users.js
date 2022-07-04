@@ -23,7 +23,7 @@ const UsersReducer = (state = {}, action) => {
         case LOAD_ALL_USERS:
             const newState = {}
             action.users.forEach(user => newState[user.id] = user)
-            return newState
+            return newState;
         default:
             return state
     }

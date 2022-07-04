@@ -3,6 +3,7 @@ import * as notebookActions from "../../../store/notebooks";
 import * as notesActions from "../../../store/notes"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import DeleteNBFormModal from "./DeleteModal";
 import { NavLink } from "react-router-dom";
 
 const NotebookSidebar = () => {
@@ -41,11 +42,6 @@ const NotebookSidebar = () => {
       history.push(`/notebooks/${notebookId}/${newNoteId}`);
     };
 
-  function deleteNB(){
-    dispatch(notebookActions.deleteANotebook(notebook))
-    history.push("/notebooks");
-  }
-
   const notesSorted = Object.values(notes).sort((a, b) =>
     b.updatedAt.localeCompare(a.updatedAt)
   );
@@ -57,28 +53,25 @@ const NotebookSidebar = () => {
         <div className="notes-box-top">
             <div className ="notes-box-name">
             <i className="fas fa-book-open" id="openbook-icon"></i>
-              {notebook.title}
+              {notebook?.title}
             </div>
-              <button className='notebook-newnote' button onClick={() => newNote()}>
-                  Add a note
-              </button>
-              <button className='notebook-delete' button onClick={() => deleteNB()}>
-                Test Delete
-              </button>
-            <div className="notes-box-number">
+            <div className="notes-box-number-buttons">
                 {notesSorted.length} notes 
+                <DeleteNBFormModal/>
+                <button className='notebook-newnote' button onClick={() => newNote()}>
+                {/* <i className="fas fa-plus"></i> */}
+                New Note
+                </button>
             </div>
-            {/* <NavLink>
-              New Note
-            </NavLink> */}
-           
         </div>
         {notesSorted.map((note) => (
           <Link to={`/notebooks/${notebookId}/${note.id}`} key={note.id}>
             <div className="note-ele">
-              <div className="note-title">{note.title}</div>
+              <div className="note-title">
+                {note.title.slice(0, 20) + '...'}
+              </div>
               <div className="note-content-preview">
-                {note.content}
+                {note.content.slice(0, 35) + '...'}
               </div>
             </div>
           </Link>
@@ -98,21 +91,22 @@ const NotebookSidebar = () => {
         <div className="notes-box-top">
             <div className ="notes-box-name">
             <i className="fas fa-book-open" id="openbook-icon"></i>
-              {notebook.title}
+              {!!notebook && notebook.title}
             </div>
-              <button className='notebook-newnote' button onClick={() => newNote()}>
-                Add a note
-              </button>
-              <button className='notebook-delete' button onClick={() => deleteNB()}>
-                Test Delete
-              </button>
-            <div className="notes-box-number">
+              <div className="notes-box-number-buttons">
                 {notesSorted.length} notes 
-            </div>
+                <DeleteNBFormModal/>
+                <button className='notebook-newnote' button onClick={() => newNote()}>
+                {/* <i className="fas fa-plus"></i> */}
+                New Note
+                </button>
+              </div>
         </div>
-          <div className="no-notes-wrap">
-            <i className="fas fa-signature"></i>
-            <i className="fas fa-pen"></i>
+          <div className="note-box-end">
+            <div className='empty-graphic'>
+              <i className="fas fa-signature"></i>
+              <i className="fas fa-pen"></i>
+            </div>
             <div>It starts with a note...</div>
         </div>
       </div>

@@ -3,14 +3,14 @@
     list-style: none;
     font-family: 'Joan', serif;
     transition: 0.2s;
+    letter-spacing: .8px;
 }
 
 .navigation{
     display: flex;
     position: absolute;
-    letter-spacing: 1px;
     box-sizing: border-box;
-
+    opacity: 100%;
   }
 
   .navigation-top{
@@ -63,6 +63,10 @@
     cursor: pointer;
     list-style: none;
     text-decoration: none;
+  }
+
+  .navitembot{
+    margin-bottom: 0%;
   }
 
   .fa-chevron-circle-left{
@@ -122,6 +126,7 @@
     color: white;
     cursor: pointer;
     font-size: 16px;
+    font-weight: lighter;
     opacity: 0.8;
     display: inline-block;
     text-decoration: none;

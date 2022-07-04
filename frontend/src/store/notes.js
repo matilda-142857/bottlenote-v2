@@ -3,6 +3,8 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_NOTES = "notes/GET_ALL_NOTES";
 const ADD_UPDATE_NOTE = "notes/ADD_UPDATE_NOTE";
 const TRASH_NOTE = "notes/TRASH_NOTE";
+const TRASH_NOTES = "notes/TRASH_NOTES";
+const RESTORED_NOTE = "notes/RESTORED_NOTE";
 
 const getNotes = (notes) => {
 	return {
@@ -25,6 +27,20 @@ const trashedNote = (note) => {
 	};
 };
 
+export const trashedNotes = (notes) => {
+	return {
+		type: TRASH_NOTES,
+		notes
+	};
+};
+
+export const restoredNote = (note) => {
+	return {
+		type: RESTORED_NOTE,
+		note,
+	};
+};
+
 export const getAllNotes = () => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes`);
 	const data = await response.json();
@@ -32,12 +48,13 @@ export const getAllNotes = () => async (dispatch) => {
 	return response;
 };
 
-// export const getAllNotebookNotes = (notebookId) => async (dispatch) => {
-// 	const response = await csrfFetch(`/api/notes/${notebookId}`);
-// 	const data = await response.json();
-// 	dispatch(getNotes(data));
-// 	return response;
-// };
+export const trashAllNotebookNotes = (notebookId) => async (dispatch) => {
+	const response = await csrfFetch(`/api/notes/trash/${notebookId}`);
+	const data = await response.json();
+    console.log(data)
+	dispatch(trashedNotes(data));
+	return response;
+};
 
 export const addNewNote = (newNote) => async (dispatch) => {
 	const response = await csrfFetch("/api/notes/new", {
@@ -48,31 +65,32 @@ export const addNewNote = (newNote) => async (dispatch) => {
 		body: JSON.stringify(newNote),
 	});
 	const data = await response.json();
-    console.log("SCREEEEEEEEE", data)
 	dispatch(addUpdateNote(data));
 	return data.id;
 };
 
 export const editNote = (noteId, note) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes/${noteId}`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-		method: "PATCH",
 		body: JSON.stringify(note),
 	});
-	const data = await response.json();
-	dispatch(addUpdateNote(data));
-	return response;
+    if (response.ok){
+        const data = await response.json();
+	    dispatch(addUpdateNote(data));
+    }
+	// return response;
 };
 
 //CHANGES iSTRASHED VALUE. Delete is in trash.js
 export const trashNote = (noteId, note) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes/${noteId}`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-		method: "PATCH",
 		body: JSON.stringify(note),
 	});
 	const data = await response.json();
@@ -90,10 +108,10 @@ const notesReducer = (state = initialState, action) => {
 
 		case GET_ALL_NOTES:
 			newState = {...state};
-            console.log("wwwwwwwwwwwwwwwwwwwww" ,action.notes)
 			action.notes.forEach((note) => {
-			newState[note.id] = note; 
-            });
+                if (!note.isTrashed){
+			        newState[note.id] = note; 
+                }})
 			return newState;
 
 		case ADD_UPDATE_NOTE:
@@ -101,11 +119,33 @@ const notesReducer = (state = initialState, action) => {
 			newState[action.note.id] = action.note;
 			return newState;
 
-		case TRASH_NOTE:
+        case TRASH_NOTE:
+			newState = { ...state };
+            // newState[action.note.id].isTrashed = true;
+			delete newState[action.note.id];
+			return newState;
+
+        case TRASH_NOTES:
+            newState = { ...state };
+            action.notes.forEach((note) => {
+                note.isTrashed = true;
+                delete newState[note.id];
+            })
+            return newState;  
+
+        case RESTORED_NOTE:
             newState = { ...state };
             newState[action.note.id] = action.note;
-            newState[action.note.id].isTrashed = true;
-            return newState;   
+            newState[action.note.id].isTrashed = false;
+            return newState;
+
+        // case TRASH_NOTES:
+        //     newState = { ...state };
+        //     action.notes.forEach((note) => {
+        //         newState[note.id].isTrashed = true;
+        //         delete newState[note.id];
+        //     })
+        //     return newState;  
 
 		default:
 			return state;
