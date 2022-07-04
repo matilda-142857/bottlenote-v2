@@ -54,16 +54,15 @@ router.get(
 	requireAuth,
 	asyncHandler(async (req, res) => {
         const notebookId = parseInt(req.params.notebookId, 10);
-        console.log( "NOTEBOOK ID HEEEEEEEEEEEERE" , notebookId)
-		const notes = await Note.findAll({
-			where: {notebookId: notebookId},
-		});
+		const notes = await Note.findAll()
+
         for (let i = 0; i < notes.length; i++) {
-            notes[i].isTrashed= true;
-        }
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA", notes)
-        res.json(notes);
-	})
+            if (notes[i].notebookId === notebookId){
+                notes[i].isTrashed= true;
+            }
+	    }
+    res.json(notes);
+    })
 );
 
 //READ (one)

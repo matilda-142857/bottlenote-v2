@@ -37,7 +37,7 @@ const NoteEdit = () => {
 	}, [noteContent]);
 
 	useEffect(() => {
-		if ( note.id !== thisNoteId){
+		if ( note && note.id !== thisNoteId){
 			setNoteTitle(note.title)
 			setNoteContent(note.content)
 			setThisNoteId(note.id);
@@ -73,7 +73,7 @@ const NoteEdit = () => {
 				}
 				placeholder={"Untitled"}
 			/>
-
+				{/* <Editor content={content} setContent={setContent} /> */}
 			  {/* <EditorToolbar /> */}
 			  <textarea
 				className="text-editor"

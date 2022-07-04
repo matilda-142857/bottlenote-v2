@@ -91,7 +91,7 @@ const NotebookSidebar = () => {
         <div className="notes-box-top">
             <div className ="notes-box-name">
             <i className="fas fa-book-open" id="openbook-icon"></i>
-              {notebook.title}
+              {!!notebook && notebook.title}
             </div>
               <div className="notes-box-number-buttons">
                 {notesSorted.length} notes 
