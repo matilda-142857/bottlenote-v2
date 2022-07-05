@@ -94,14 +94,18 @@ body{
     margin-top: 1rem;
     margin-bottom: 2rem;
     color: #057785;
+    margin-bottom: 10vh;
+  }
+
+  .splash-extras{
+    display: inline-block;
   }
 
   .splashPicText {
-    margin: auto;
-    text-align: left;
-    font-weight: 50;
-    letter-spacing: .5px;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    color: #057785;
+    display: flex;
+  }
+
+  .splashText{
+    width: 50%;
+    color: #014b56;
   }
