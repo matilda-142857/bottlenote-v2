@@ -46,22 +46,24 @@ const NoteTrash = () => {
 
 			  <div className="note-edit-bkg">
 			  <textarea
-				disabled
+			  	readOnly={true}
+				// disabled={true}
 				className="title-textarea"
 				type="text"
 				name="noteTitle"
-				value={note?.title}
+				value={note?.title || ''}
 				placeholder={"Untitled"}
 			/>
 			  <div className='note-edit-box'>
 					<EditorToolbar/>
 					<ReactQuill
-						disabled
+						readOnly={true}
+						// disabled={true}
 						className="text-editor"
 						theme="snow"
 						type="text"
 						name="noteTitle"
-						value={note?.content}
+						value={note?.content || ''}
 						placeholder={"Write something awesome..."}
 						modules={modules}
 						formats={formats}
