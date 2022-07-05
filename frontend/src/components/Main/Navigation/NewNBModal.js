@@ -15,7 +15,7 @@ function NewNotebookFormModal() {
         </button>
             {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-                <NewNotebookFormContent />
+                <NewNotebookFormContent closeModal={() => setShowModal(false)}/>
             </Modal>
          )}
     </>

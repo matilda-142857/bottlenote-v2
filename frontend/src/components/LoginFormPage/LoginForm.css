@@ -66,7 +66,6 @@ body{
 
 .before-or {
   display: inline-block;
-  position: relative;
   right: 50px;
   width: 172px;
   top: 504px;
@@ -76,13 +75,31 @@ body{
 }
 .after-or {
   display: inline-block;
-  position: relative;
   left: 50px;
   width: 172px;
   top: 504px;
   border-top: 1px solid rgb(160, 160, 160);
   content: " ";
   position: absolute;
+}
+
+.login-errors{
+  position:absolute;
+  margin-left: 15%;
+  margin-top: -4%;
+}
+
+.signup-error-container{
+  position: relative;
+  margin-top: -28px;
+  width: 90%;
+}
+
+.signup-errors{
+  position:relative;
+  margin-left: 15%;
+  margin-top: -1px;
+  line-height: 18px;
 }
 
 #demoBtn{
