@@ -1,0 +1,40 @@
+.footer{
+    width: 100%;
+    background-color: white;
+    height: 15vh;
+    display: flex;
+    vertical-align: middle;
+}
+
+.footer-line-break{
+  /* display: inline-block; */
+  margin-left: 10vw;
+  width: 80vw;
+  bottom: -25vh;
+  border-top: 1px solid rgb(160, 160, 160);
+  content: "";
+  position: absolute;
+}
+
+.footer-programs {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    position: relative;
+  }
+
+  .footer-programs-list li{
+    float: right;
+    margin-right: 6vw;
+  }
+  
+  .footer-programs-list li a {
+    display: block;
+    color: #014b56;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+  }

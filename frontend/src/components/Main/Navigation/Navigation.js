@@ -70,7 +70,6 @@ const Navigation = () => {
               <li><NavLink to="/trash" className="navitem"><i class="fas fa-trash"></i> Trash</NavLink></li>
 
               <li className="navitembot"><NavLink to="/" onClick={logout}className="navitem"><i className="fas fa-sign-out-alt"></i> Logout</NavLink></li>
-
           </ul> 
       </div>
     </main>

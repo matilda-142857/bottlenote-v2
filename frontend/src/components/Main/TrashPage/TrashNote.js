@@ -19,7 +19,6 @@ const NoteTrash = () => {
 	const history = useHistory();
 
 	const note = useSelector((state) => state.trash[noteId]);
-	console.log(note)
     
 	const deleteNote = async () => {
 		await dispatch(trashActions.deleteOneTrash(noteId));
