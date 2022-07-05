@@ -51,7 +51,6 @@ export const getAllNotes = () => async (dispatch) => {
 export const trashAllNotebookNotes = (notebookId) => async (dispatch) => {
 	const response = await csrfFetch(`/api/notes/trash/${notebookId}`);
 	const data = await response.json();
-    console.log(data)
 	dispatch(trashedNotes(data));
 	return response;
 };
