@@ -4,7 +4,7 @@ import '../NotePage/NotePage.css';
 
 import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "../NotePage/Quill";
-// import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.snow.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import * as notesActions from '../../../store/notes';
