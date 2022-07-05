@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import './Navigation.css';
 
-function NewNotebookFormContent() {
+function NewNotebookFormContent({closeModal}) {
     const dispatch = useDispatch();
     const notebooks = useSelector((state) => state.notebooks);
 	const [title, setTitle] = useState("");
@@ -16,7 +16,8 @@ function NewNotebookFormContent() {
 		const notebook = { title };
 		const newNotebook = await dispatch(notebookActions.addNotebook(notebook));
 		setTitle("");
-		history.push(`/notebooks/${newNotebook.id}`);
+		history.push(`/notebooks/${newNotebook.id}`)
+        closeModal();
 	};
 
     useEffect(() => {

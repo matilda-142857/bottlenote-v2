@@ -356,10 +356,10 @@
 
 
   .title-textarea{
-    position: absolute;
+    position: relative;
     font-size: 38px;
     margin-top: 8%;
-    margin-left: 35.1%;
+    margin-left: 18%;
     padding-left: 1%;
     padding-bottom: 1%;
     width: 63.2%;
@@ -379,17 +379,13 @@
 
   .text-editor{
     font-size:20px;
-    margin-left: 35%;
-    margin-top: 6.5%;
     height: 80%;
-    width: 60%;
-    padding-top: 8%;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-bottom: 2%;
+    width: 96%;
+    padding: 2%;
     background-color: rgba(255, 255, 255, 0.5);
     color: rgb(0, 0, 0);
-    resize: none
+    resize: none;
+    min-height: 52vh;
   }
 
   .note-page{
@@ -457,5 +453,11 @@
     z-index: -1;
   }
 
+  .note-edit-box{
+    width: 63%;
+    margin-left: 18%;
+  }
 
-   
+  #toolbar{
+    position: relative;
+  }

@@ -9,7 +9,7 @@ const TrashLess = () => {
         <>
         <div className=".note-page">
             <h3 className="undefined-text">
-                Delete and Restore notes here...
+                Permanently Delete and Restore notes here...
             </h3>
         <img
             className="undefined-dolphin"

@@ -37,9 +37,15 @@ function SignupForm() {
     <div id="login-title">Bottlenote</div>
     <div id="login-subtitle">Note-taking with porpoise.</div>
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+      <div className='signup-error-container'>
+        <ul>
+          {errors.map((error, idx) => (
+            <li className= 'signup-errors' 
+                key={idx}>{error}
+            </li>
+          ))}
+        </ul>
+      </div>
         <input
           type="text"
           value={email}

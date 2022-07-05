@@ -35,9 +35,9 @@ function Splash(){
         </div>
         <nav>
           <ul>
-            <li>
+            {/* <li>
               <a href="/about">About</a>
-            </li>
+            </li> */}
             <li>
               <LoginFormModal className='button login'/>
             </li>
