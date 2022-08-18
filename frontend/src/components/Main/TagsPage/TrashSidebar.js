@@ -41,7 +41,7 @@ const TagsSidebar = () => {
             <div className="note-ele">
               <div className="note-title">{note.title}</div>
               <div className="note-content-preview">
-                {note.content}
+              {note.content.replace(/(<([^>]+)>)/gi, "").slice(0, 60) + '...'}
               </div>
             </div>
           </Link>

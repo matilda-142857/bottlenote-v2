@@ -53,9 +53,9 @@ const NoteSidebar = () => {
         {notesSorted.map((note) => (
           <Link to={`/notes/${note.id}`} key={note.id}>
             <div className="note-ele">
-              <div className="note-title">{note.title.slice(0, 20) + '...'}</div>
+              <div className="note-title">{note.title.slice(0, 30) + '...'}</div>
               <div className="note-content-preview">
-                {note.content.slice(0, 35) + '...'}
+                {note.content.replace(/(<([^>]+)>)/gi, "").slice(0, 60) + '...'}
               </div>
             </div>
           </Link>

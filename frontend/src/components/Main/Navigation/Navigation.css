@@ -34,7 +34,7 @@
     margin-bottom: 10px;
   }
   .navigation .navigation-side{
-    width: 17%;
+    width: 16%;
     height: 100%;
     background: #003e4d;
     padding: 30px 0px;
@@ -123,7 +123,8 @@
     font-family: 'Joan', serif;
     border-radius: 2px;
     border: none;
-    color: white;
+    padding-top: 8px;
+    color: #d1e9eb;
     cursor: pointer;
     font-size: 16px;
     font-weight: lighter;
@@ -131,10 +132,13 @@
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
-    width: 60%;
+    width: 70%;
   }
   
-  .new-nb-button:hover {opacity: 1}
+  .new-nb-button:hover {
+    opacity: 1;
+    color: white;
+  }
 
   /* Modal for new nb */
 

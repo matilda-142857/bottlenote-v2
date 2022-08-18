@@ -30,8 +30,7 @@ function HomePage(){
 
   const date = new Date();
 
-  const monthsList = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
+  const monthsList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   const monthName = monthsList[date.getMonth()];
   const dateDisplay = `${monthName} ${date.getDate()}, ${date.getFullYear()}`;

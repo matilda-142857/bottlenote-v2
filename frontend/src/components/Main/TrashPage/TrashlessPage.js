@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import dolphin from '../../../context/undefdolphin.png';
 import waves from '../../../context/undefwaves.png';
-import splash from '../../../context/undefsplash.png';
+import splash from '../../../context/undefsplash2.png';
 
 const TrashLess = () => {
 
     return(
         <>
-        <div className=".note-page">
+        <div className="note-page">
+        <div className="undefined-graphic">
             <h3 className="undefined-text">
                 Permanently Delete and Restore notes here...
             </h3>
@@ -27,7 +28,7 @@ const TrashLess = () => {
             alt="undefined-splash"
         />
         </div>
-    
+        </div>
         </>
     )	
 }

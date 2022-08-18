@@ -10,12 +10,12 @@
   /* position: fixed; */
 }
 .notes-box{
-    width: 19%;
+    width: 17.5%;
     height: 100vh;
     background: #f5f8fb;
     padding: 20px 0px;
     position: fixed;
-    margin-left: 16%;
+    margin-left: 15%;
     overflow-y: auto;
     opacity:90%;
   }
@@ -31,16 +31,16 @@
 }
 
 .notes-box-name{
-    font-size: 20px;
+    font-size: 18px;
     padding: 2%;
     margin-left: 2%;
 }
 
 .notes-box-number{
-    /* font-size: 17px;
-    padding: 2%;
-    margin-left: 5%; */
-    margin-bottom: 4%; 
+    /* font-size: 17px;*/
+    padding: 2%; 
+    margin-left: 5%;
+    margin-bottom: 3%; 
     position: fixed;
 }
 
@@ -59,24 +59,25 @@
 
   .note-ele:hover{ 
     opacity: 100%;
-    background: #f4f8fc;
+    background: #f8fcff;
     color: #141516;
   }
 
   .note-title{
-    color: #5d646b;
+    color: #141516;
     padding: 2%;
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 3%;
     margin-bottom:-2%;
+    font-size: 15px;
   }
 
   .note-content-preview{
-    color: #92969b;
+    color: #141516;
     padding: 4%;
-    font-size: 14px;
-    margin: 5%;
+    margin: 4%;
+    font-size: 12.5px;
   }
 
   .notes-box-new{
@@ -270,7 +271,9 @@
   }
 
   .notes-box-number-buttons{
-    margin-left: 5%;
+    margin-left: 6%;
+    /* margin-right: 3%; */
+    margin-top: 3%;
   }
 
   .notebook-newnote{
@@ -292,7 +295,7 @@
 
   .notebook-newnote-notepage{
     margin-top: 5%;
-    margin-left: 55%;
+    margin-left: 48%;
     background-color: #2e9caa;
     border-radius: 5px;
     border: none;
@@ -312,7 +315,7 @@
   }
 
   .del-nb-button{
-    margin-left: 43%;
+    margin-left: 35%;
     margin-top: 5%;
     margin-right: 2%;
     background-color: #d2997b;
@@ -359,10 +362,10 @@
     position: relative;
     font-size: 38px;
     margin-top: 8%;
-    margin-left: 18%;
-    padding-left: 1%;
-    padding-bottom: 1%;
-    width: 63.2%;
+    margin-left: 16%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+    width: 66.2%;
     height: 53.2px;
     background: transparent; 
     border-left: none;
@@ -392,7 +395,6 @@
     margin-left: 35%;
     width: auto;
     height: auto;
-    border: solid black 1px;
   }
 
   .ql-container ql-snow{
@@ -419,43 +421,52 @@
     border-radius: 2.5px;
   }
 
-  .undefined-text{
-    margin-left: 58%;
-    margin-top: 22%;
-    position: absolute;
-    font-weight: 100;
+  .undefined-graphic{
+    position: relative;
+    height: 100vh;
+    /* border: solid black 1px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .undefined-dolphin{
-    width: 12%;
-    height:40%;
-    margin-left: 62%;
-    margin-top: 8%;
-    position: absolute;
+    width: 17%;
     transform: rotate(30deg);
+    position: absolute;
+    margin-bottom: 27%;
+    margin-right: 5%;
+  }
+
+  .undefined-text{
+    position: absolute;
+    font-weight: 100;
+    margin-bottom: 9%;
   }
 
   .undefined-wave{
-    width: 20%;
-    height:48%;
-    margin-left: 58%;
-    margin-top:20%;
+    width: 25%;
+    height:auto;
+    margin-right: 4%;
+    margin-top: 16%;
+    z-index: -1;
     position: absolute;
+    transform: rotate(3deg);
   }
 
   .undefined-splash{
-    width: 600px;
-    height:450px;
-    opacity: 60%;
-    margin-left: 50%;
-    margin-top:8%;
+    width: 75%;
+    height:auto;
+    opacity:60%;
+    left: 10%;
     position: absolute;
-    z-index: -1;
+    z-index: -2;
+    transform: rotate(180deg);
   }
 
   .note-edit-box{
-    width: 63%;
-    margin-left: 18%;
+    width: 65%;
+    margin-left: 16.5%;
   }
 
   #toolbar{

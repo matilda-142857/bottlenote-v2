@@ -23,8 +23,8 @@ function NotebookDropdown() {
                         </p>
                     </NavLink>
                     ))}
+                    <NewNotebookFormModal />
                 </li>
-                <NewNotebookFormModal/>
             </ul>
         </div>
     );
