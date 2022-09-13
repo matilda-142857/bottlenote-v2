@@ -71,7 +71,7 @@ const NotebookSidebar = () => {
                 {note.title.slice(0, 20) + '...'}
               </div>
               <div className="note-content-preview">
-              {note.content.replace(/(<([^>]+)>)/gi, "").slice(0, 60) + '...'}
+              {note.content.replace(/(<([^>]+)>)/gi, "").slice(0, 70) + '...'}
               </div>
             </div>
           </Link>
