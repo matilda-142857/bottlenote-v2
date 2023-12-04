@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/matilda-142857/bottlenote/issues"
   },
-  "homepage": "https://github.com/matilda-142857/bottlenote#readme"
+  "homepage": "https://github.com/matilda-142857/bottlenote#readme",
+  "dependencies": {
+    "express-async-handler": "^1.2.0"
+  }
 }
