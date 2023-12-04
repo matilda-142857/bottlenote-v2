@@ -26,9 +26,9 @@ function NewNotebookFormContent({closeModal}) {
 			(notebook) => notebook.title === title
 		);
 		if (title.length < 1 || title.length > 50) {
-			errors.push("Notebook name must be between 1 and 50 characters");
+			errors.push("Notebook name must be between 1 and 50 characters.");
 		} else if (titleExists) {
-			errors.push("Notebook already exists");
+			errors.push("Notebook already exists!");
 		}
         setErrors(errors);
 	}, [title]);
