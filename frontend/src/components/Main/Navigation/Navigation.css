@@ -35,6 +35,7 @@
   }
   .navigation .navigation-side{
     width: 16%;
+    min-width: 200px;
     height: 100%;
     background: #003e4d;
     padding: 30px 0px;

@@ -11,6 +11,7 @@
 }
 .notes-box{
     width: 17.5%;
+    min-width: 220px;
     height: 100vh;
     background: #f5f8fb;
     padding: 20px 0px;
@@ -338,7 +339,7 @@
 
 
   .trash-all{
-    margin-left: 43%;
+    margin-left: 35%;
     margin-top: 5%;
     background-color: #d6b09b;
     border-radius: 5px;
